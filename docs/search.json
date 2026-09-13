@@ -51,9 +51,9 @@
   {
     "objectID": "blog/posts/post1/Untitled.html",
     "href": "blog/posts/post1/Untitled.html",
-    "title": "My First Blog Post",
+    "title": "Understanding Lagrange Multipliers",
     "section": "",
-    "text": "This is my first blog post. Example \\(\\LaTeX\\) equation: \\(\\frac{1}{2}\\sum_{i=1}^nx_i\\)"
+    "text": "Imagine you have 20 dollars to spend on two things: coffee and sandwiches. A coffee costs 2 dollars, while a sandwich costs 4 dollars. Naturally, you want to choose the combination that makes you as satisfied as possible.\nSuppose your satisfaction can be represented by the utility function\n$$\nU(x,y)=.\n$$"
   },
   {
     "objectID": "resume.html",
@@ -75,5 +75,19 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "blog/posts/post1/Untitled.html#a-simple-question",
+    "href": "blog/posts/post1/Untitled.html#a-simple-question",
+    "title": "Understanding Lagrange Multipliers",
+    "section": "",
+    "text": "Imagine you have 20 dollars to spend on two things: coffee and sandwiches. A coffee costs 2 dollars, while a sandwich costs 4 dollars. Naturally, you want to choose the combination that makes you as satisfied as possible.\nSuppose your satisfaction can be represented by the utility function\n$$\nU(x,y)=.\n$$"
+  },
+  {
+    "objectID": "blog/posts/post1/Untitled.html#here-x-is-the-number-of-coffees-and-y-is-the-number-of-sandwiches.",
+    "href": "blog/posts/post1/Untitled.html#here-x-is-the-number-of-coffees-and-y-is-the-number-of-sandwiches.",
+    "title": "Understanding Lagrange Multipliers",
+    "section": "Here, \\(x\\) is the number of coffees and \\(y\\) is the number of sandwiches.",
+    "text": "Here, \\(x\\) is the number of coffees and \\(y\\) is the number of sandwiches."
   }
 ]

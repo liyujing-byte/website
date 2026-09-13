@@ -1,13 +1,20 @@
 ---
-title: "My First Blog Post"
-date: 2026-06-16
+title: "Understanding Lagrange Multipliers"
+date: 2026-09-12
 categories:
-  - personal
-  - data-science
+  - economics
+  - mathematics
 ---
+## A simple question
+Imagine you have **20 dollars** to spend on two things: coffee and sandwiches. A coffee costs **2 dollars**, while a sandwich costs **4 dollars**. Naturally, you want to choose the combination that makes you as satisfied as possible.
 
-![](figure1.png){width="500px"}
+Suppose your satisfaction can be represented by the utility function
 
-This is my first blog post. Example $\LaTeX$ equation: $\frac{1}{2}\sum_{i=1}^nx_i$
+$$
 
+U(x,y)=\sqrt{xy}.
+
+$$
+
+Here, $x$ is the number of coffees and $y$ is the number of sandwiches.
 ---
