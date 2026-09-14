@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2026-09-12">
 
-<title>Understanding Lagrange Multipliers – Student Name</title>
+<title>Understanding Lagrange Multipliers – Yujing Li</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -113,7 +113,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">Student Name</span>
+    <span class="navbar-title">Yujing Li</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -182,16 +182,131 @@ window.Quarto = {
 </header>
 
 
-<section id="a-simple-question" class="level2">
-<h2 class="anchored" data-anchor-id="a-simple-question">A simple question</h2>
-<p>Imagine you have <strong>20 dollars</strong> to spend on two things: coffee and sandwiches. A coffee costs <strong>2 dollars</strong>, while a sandwich costs <strong>4 dollars</strong>. Naturally, you want to choose the combination that makes you as satisfied as possible.</p>
+<section id="a-simple-example" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-example">A Simple Example</h2>
+<p>Imagine you have <strong>20 dollars</strong> to spend on two things: coffee and sandwiches. A coffee costs <strong>2 dollars</strong>, while a sandwich costs <strong>4 dollars</strong>.</p>
 <p>Suppose your satisfaction can be represented by the utility function</p>
-<p>$$</p>
-<p>U(x,y)=.</p>
-<p>$$</p>
+<p><span class="math display">\[
+U(x,y)=\sqrt{xy}.
+\]</span></p>
+<p>Here, <span class="math inline">\(x\)</span> is the number of coffees and <span class="math inline">\(y\)</span> is the number of sandwiches.</p>
 </section>
-<section id="here-x-is-the-number-of-coffees-and-y-is-the-number-of-sandwiches." class="level2">
-<h2 class="anchored" data-anchor-id="here-x-is-the-number-of-coffees-and-y-is-the-number-of-sandwiches.">Here, <span class="math inline">\(x\)</span> is the number of coffees and <span class="math inline">\(y\)</span> is the number of sandwiches.</h2>
+<section id="the-constraint" class="level2">
+<h2 class="anchored" data-anchor-id="the-constraint">The Constraint</h2>
+<p>Since spending cannot exceed 20 dollars, the budget constraint is</p>
+<p><span class="math display">\[
+2x+4y=20.
+\]</span></p>
+<p>This means we cannot freely maximize utility: our choices must stay on the budget line.</p>
+<p>Rearranging the equation gives</p>
+<p><span class="math display">\[
+y = 5 - \frac{1}{2}x.
+\]</span></p>
+<p>This equation describes all combinations that use the entire budget.</p>
+<p>The challenge is therefore not simply to maximize utility, but to find the highest possible utility <strong>while staying on the budget constraint</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-budget" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-budget-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Untitled_files/figure-html/fig-budget-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-budget-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Budget constraint and indifference curves
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="why-tangency-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-tangency-matters">Why Tangency Matters</h2>
+<p>Graphically, the optimum occurs where the highest attainable indifference curve is tangent to the budget line. In this example, the optimal point is</p>
+<p><span class="math display">\[
+(x,y)=(5,2.5).
+\]</span></p>
+<p>At an interior optimum, the two curves have the same slope, so</p>
+<p><span class="math display">\[
+\frac{MU_x}{MU_y}=\frac{p_x}{p_y}.
+\]</span></p>
+<p>This tangency condition is the key intuition behind the Lagrange multiplier method.</p>
+</section>
+<section id="enter-the-lagrangian" class="level2">
+<h2 class="anchored" data-anchor-id="enter-the-lagrangian">Enter the Lagrangian</h2>
+<p>The geometric explanation is intuitive, but solving the problem graphically becomes difficult when there are many variables or constraints.</p>
+<p>This is where the Lagrange multiplier method becomes useful.</p>
+<p>We combine the objective function and the constraint into a single expression:</p>
+<p><span class="math display">\[
+\mathcal{L}(x,y,\lambda)
+=
+\sqrt{xy}
++
+\lambda(20-2x-4y).
+\]</span></p>
+<p>At first, this looks strange. We have introduced a completely new variable, <span class="math inline">\(\lambda\)</span>, even though it was not part of the original problem.</p>
+<p>But notice something important: for every feasible choice,</p>
+<p><span class="math display">\[
+20-2x-4y=0.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\lambda(20-2x-4y)=0.
+\]</span></p>
+<p>So along the budget constraint, adding this term does not change the value of the utility function at all.</p>
+<p>The multiplier simply gives us a way to enforce the constraint while solving the optimization problem.</p>
+</section>
+<section id="solving-the-problem" class="level2">
+<h2 class="anchored" data-anchor-id="solving-the-problem">Solving the Problem</h2>
+<p>Taking the first-order conditions gives</p>
+<p><span class="math display">\[
+\frac{\partial \mathcal L}{\partial x}
+=
+\frac{1}{2}\sqrt{\frac{y}{x}}-2\lambda=0,
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial \mathcal L}{\partial y}
+=
+\frac{1}{2}\sqrt{\frac{x}{y}}-4\lambda=0,
+\]</span></p>
+<p>together with the original constraint</p>
+<p><span class="math display">\[
+2x+4y=20.
+\]</span></p>
+<p>Solving these equations gives</p>
+<p><span class="math display">\[
+\boxed{(x^*,y^*)=(5,2.5)},
+\]</span></p>
+<p>exactly the point we identified graphically.</p>
+</section>
+<section id="what-does-lambda-mean" class="level2">
+<h2 class="anchored" data-anchor-id="what-does-lambda-mean">What Does <span class="math inline">\(\lambda\)</span> Mean?</h2>
+<p>The multiplier is more than a mathematical trick. It is often called a <strong>shadow price</strong>: it measures how much the maximum value of the objective would increase if the constraint were relaxed by one unit.</p>
+<p>Here, <span class="math inline">\(\lambda\)</span> tells us approximately how much maximum utility would increase if we had one additional dollar to spend.</p>
+<p>For this example,</p>
+<p><span class="math display">\[
+\lambda^*=\frac{1}{4\sqrt{2}}\approx0.177.
+\]</span></p>
+<p>So one additional dollar would increase maximum utility by approximately 0.177 units.</p>
+</section>
+<section id="so-why-does-the-method-work" class="level2">
+<h2 class="anchored" data-anchor-id="so-why-does-the-method-work">So Why Does the Method Work?</h2>
+<p>The key idea is not the symbol <span class="math inline">\(\lambda\)</span> itself. The method works because, at a constrained optimum, there is no feasible direction in which we can move and improve the objective.</p>
+<p>Geometrically, the objective function and the constraint are tangent at the optimum. Their gradients therefore point in the same direction:</p>
+<p><span class="math display">\[
+\nabla f
+=
+\lambda \nabla g.
+\]</span></p>
+<p>The multiplier <span class="math inline">\(\lambda\)</span> tells us how the two gradients are scaled relative to each other.</p>
+<p>This is exactly what the first-order conditions of the Lagrangian impose. What initially looks like an artificial mathematical trick is really an algebraic way of expressing the geometry of constrained optimization.</p>
+</section>
+<section id="key-points" class="level2">
+<h2 class="anchored" data-anchor-id="key-points">Key Points</h2>
+<p>Lagrange multipliers can seem unintuitive because the method appears to introduce an arbitrary new variable and somehow turn a constrained problem into a set of ordinary equations.</p>
+<p>But there is no magic involved.</p>
+<p>The constraint limits where we are allowed to move. At an interior optimum, the objective function is tangent to that constraint, so their gradients must be parallel. The Lagrange multiplier captures this relationship.</p>
+<p>Even better, <span class="math inline">\(\lambda\)</span> has its own interpretation: it tells us how valuable it would be to relax the constraint slightly.</p>
+<p>So the next time a mysterious <span class="math inline">\(\lambda\)</span> appears in an optimization problem, it may help to think of it not as a mathematical trick, but as the <strong>value of a little more freedom</strong>.</p>
 
 
 </section>
@@ -604,7 +719,7 @@ window.Quarto = {
 <p><img src="../../../images/UniversityofPennsylvania_FullLogo_RGB.png" class="img-fluid" width="100"></p>
 </div>   
     <div class="nav-footer-center">
-<p>© 2026 Student Name</p>
+<p>© 2026 Yujing Li</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

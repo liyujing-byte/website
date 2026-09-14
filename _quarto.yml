@@ -1,9 +1,10 @@
+
 project:
   type: website
   output-dir: docs
 
 website:
-  title: "Student Name"
+  title: "Yujing Li"
 
   navbar:
     left:
@@ -15,7 +16,7 @@ website:
 
   page-footer:
     center: |
-      © 2026 Student Name
+      © 2026 Yujing Li
     left: |
       ![](/images/UniversityofPennsylvania_FullLogo_RGB.png){width=100px}
 

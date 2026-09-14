@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Student Name",
-    "section": "",
-    "text": "Student Name\nUniversity of Pennsylvaina\nWelcome to my personal website.\n\nQuick Links"
-  },
-  {
     "objectID": "bio.html",
     "href": "bio.html",
     "title": "About Me",
@@ -46,14 +39,70 @@
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "My First Blog Post\n\n\n\n\n\n\n\n\n\n\n\nJun 16, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\n\n\n\nJun 16, 2026\n\n\n\n\n\n\nNo matching items"
+    "text": "Understanding Lagrange Multipliers\n\n\n\n\n\n\n\n\nSep 12, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\nJun 16, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/posts/post1/Untitled.html",
     "href": "blog/posts/post1/Untitled.html",
     "title": "Understanding Lagrange Multipliers",
     "section": "",
-    "text": "Imagine you have 20 dollars to spend on two things: coffee and sandwiches. A coffee costs 2 dollars, while a sandwich costs 4 dollars. Naturally, you want to choose the combination that makes you as satisfied as possible.\nSuppose your satisfaction can be represented by the utility function\n$$\nU(x,y)=.\n$$"
+    "text": "Imagine you have 20 dollars to spend on two things: coffee and sandwiches. A coffee costs 2 dollars, while a sandwich costs 4 dollars.\nSuppose your satisfaction can be represented by the utility function\n\\[\nU(x,y)=\\sqrt{xy}.\n\\]\nHere, \\(x\\) is the number of coffees and \\(y\\) is the number of sandwiches."
+  },
+  {
+    "objectID": "blog/posts/post1/Untitled.html#a-simple-example",
+    "href": "blog/posts/post1/Untitled.html#a-simple-example",
+    "title": "Understanding Lagrange Multipliers",
+    "section": "",
+    "text": "Imagine you have 20 dollars to spend on two things: coffee and sandwiches. A coffee costs 2 dollars, while a sandwich costs 4 dollars.\nSuppose your satisfaction can be represented by the utility function\n\\[\nU(x,y)=\\sqrt{xy}.\n\\]\nHere, \\(x\\) is the number of coffees and \\(y\\) is the number of sandwiches."
+  },
+  {
+    "objectID": "blog/posts/post1/Untitled.html#the-constraint",
+    "href": "blog/posts/post1/Untitled.html#the-constraint",
+    "title": "Understanding Lagrange Multipliers",
+    "section": "The Constraint",
+    "text": "The Constraint\nSince spending cannot exceed 20 dollars, the budget constraint is\n\\[\n2x+4y=20.\n\\]\nThis means we cannot freely maximize utility: our choices must stay on the budget line.\nRearranging the equation gives\n\\[\ny = 5 - \\frac{1}{2}x.\n\\]\nThis equation describes all combinations that use the entire budget.\nThe challenge is therefore not simply to maximize utility, but to find the highest possible utility while staying on the budget constraint.\n\n\n\n\n\n\n\n\nFigure 1: Budget constraint and indifference curves"
+  },
+  {
+    "objectID": "blog/posts/post1/Untitled.html#why-tangency-matters",
+    "href": "blog/posts/post1/Untitled.html#why-tangency-matters",
+    "title": "Understanding Lagrange Multipliers",
+    "section": "Why Tangency Matters",
+    "text": "Why Tangency Matters\nGraphically, the optimum occurs where the highest attainable indifference curve is tangent to the budget line. In this example, the optimal point is\n\\[\n(x,y)=(5,2.5).\n\\]\nAt an interior optimum, the two curves have the same slope, so\n\\[\n\\frac{MU_x}{MU_y}=\\frac{p_x}{p_y}.\n\\]\nThis tangency condition is the key intuition behind the Lagrange multiplier method."
+  },
+  {
+    "objectID": "blog/posts/post1/Untitled.html#enter-the-lagrangian",
+    "href": "blog/posts/post1/Untitled.html#enter-the-lagrangian",
+    "title": "Understanding Lagrange Multipliers",
+    "section": "Enter the Lagrangian",
+    "text": "Enter the Lagrangian\nThe geometric explanation is intuitive, but solving the problem graphically becomes difficult when there are many variables or constraints.\nThis is where the Lagrange multiplier method becomes useful.\nWe combine the objective function and the constraint into a single expression:\n\\[\n\\mathcal{L}(x,y,\\lambda)\n=\n\\sqrt{xy}\n+\n\\lambda(20-2x-4y).\n\\]\nAt first, this looks strange. We have introduced a completely new variable, \\(\\lambda\\), even though it was not part of the original problem.\nBut notice something important: for every feasible choice,\n\\[\n20-2x-4y=0.\n\\]\nTherefore,\n\\[\n\\lambda(20-2x-4y)=0.\n\\]\nSo along the budget constraint, adding this term does not change the value of the utility function at all.\nThe multiplier simply gives us a way to enforce the constraint while solving the optimization problem."
+  },
+  {
+    "objectID": "blog/posts/post1/Untitled.html#the-first-order-conditions",
+    "href": "blog/posts/post1/Untitled.html#the-first-order-conditions",
+    "title": "Understanding Lagrange Multipliers",
+    "section": "The First-Order Conditions",
+    "text": "The First-Order Conditions\nWe now differentiate the Lagrangian with respect to \\(x\\), \\(y\\), and \\(\\lambda\\):\n\\[\n\\frac{\\partial \\mathcal{L}}{\\partial x}\n=\n\\frac{1}{2}\\sqrt{\\frac{y}{x}}\n-\n2\\lambda\n=\n0,\n\\]\n\\[\n\\frac{\\partial \\mathcal{L}}{\\partial y}\n=\n\\frac{1}{2}\\sqrt{\\frac{x}{y}}\n-\n4\\lambda\n=\n0,\n\\]\nand\n\\[\n\\frac{\\partial \\mathcal{L}}{\\partial \\lambda}\n=\n20-2x-4y\n=\n0.\n\\] The third condition is especially instructive. We obtain the original budget constraint back when differentiating with respect to \\(\\lambda\\). Dividing the first two conditions eliminates \\(\\lambda\\):\n\\[\n\\frac{\\sqrt{y/x}}{\\sqrt{x/y}}\n=\n\\frac{2}{4}.\n\\]\nThis simplifies to\n\\[\n\\frac{y}{x}\n=\n\\frac{1}{2},\n\\]\nso\n\\[\nx=2y.\n\\]\nSubstituting this into the budget constraint,\n\\[\n2(2y)+4y=20,\n\\]\nwhich gives\n\\[\ny^*=2.5\n\\]\nand therefore\n\\[\nx^*=5.\n\\]\nSo the optimal bundle is\n\\[\n\\boxed{(x^*,y^*)=(5,2.5)}.\n\\]"
+  },
+  {
+    "objectID": "blog/posts/post1/Untitled.html#what-does-lambda-actually-mean",
+    "href": "blog/posts/post1/Untitled.html#what-does-lambda-actually-mean",
+    "title": "Understanding Lagrange Multipliers",
+    "section": "What Does \\(\\lambda\\) Actually Mean?",
+    "text": "What Does \\(\\lambda\\) Actually Mean?\nSo far, \\(\\lambda\\) may still look like a mathematical trick that helps us solve the problem. But it has an important economic interpretation.\nThe Lagrange multiplier measures how much the best possible value of the objective function would increase if we relaxed the constraint by one unit.\nIn our example, the constraint is the 20-dollar budget. Therefore, \\(\\lambda\\) tells us approximately how much maximum utility would increase if we had one additional dollar to spend.\nThis is why \\(\\lambda\\) is often called a shadow price: it measures the value of having a little more of a scarce resource. For our optimal bundle, \\(x^*=5\\) and \\(y^*=2.5\\). Substituting these values into the first-order condition gives\n\\[\n\\lambda^*\n=\n\\frac{1}{4\\sqrt{2}}\n\\approx 0.177.\n\\]\nThis means that, near a budget of 20 dollars, one additional dollar would increase the maximum attainable utility by approximately 0.177 units.\nImportantly, \\(\\lambda\\) is a marginal value. It describes the effect of a small relaxation of the constraint, not necessarily the effect of a very large increase in the budget."
+  },
+  {
+    "objectID": "blog/posts/post1/Untitled.html#so-why-does-the-method-work",
+    "href": "blog/posts/post1/Untitled.html#so-why-does-the-method-work",
+    "title": "Understanding Lagrange Multipliers",
+    "section": "So Why Does the Method Work?",
+    "text": "So Why Does the Method Work?\nThe key idea is not the symbol \\(\\lambda\\) itself. The method works because, at a constrained optimum, there is no feasible direction in which we can move and improve the objective.\nGeometrically, the objective function and the constraint are tangent at the optimum. Their gradients therefore point in the same direction:\n\\[\n\\nabla f\n=\n\\lambda \\nabla g.\n\\]\nThe multiplier \\(\\lambda\\) tells us how the two gradients are scaled relative to each other.\nThis is exactly what the first-order conditions of the Lagrangian impose. What initially looks like an artificial mathematical trick is really an algebraic way of expressing the geometry of constrained optimization."
+  },
+  {
+    "objectID": "blog/posts/post1/Untitled.html#key-points",
+    "href": "blog/posts/post1/Untitled.html#key-points",
+    "title": "Understanding Lagrange Multipliers",
+    "section": "Key Points",
+    "text": "Key Points\nLagrange multipliers can seem unintuitive because the method appears to introduce an arbitrary new variable and somehow turn a constrained problem into a set of ordinary equations.\nBut there is no magic involved.\nThe constraint limits where we are allowed to move. At an interior optimum, the objective function is tangent to that constraint, so their gradients must be parallel. The Lagrange multiplier captures this relationship.\nEven better, \\(\\lambda\\) has its own interpretation: it tells us how valuable it would be to relax the constraint slightly.\nSo the next time a mysterious \\(\\lambda\\) appears in an optimization problem, it may help to think of it not as a mathematical trick, but as the value of a little more freedom."
   },
   {
     "objectID": "resume.html",
@@ -70,6 +119,13 @@
     "text": "Resume PDF"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Yujing Li",
+    "section": "",
+    "text": "Yujing Li\nUniversity of Pennsylvaina\nWelcome to my personal website.\n\nQuick Links"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -77,17 +133,17 @@
     "text": "About this site\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "blog/posts/post1/Untitled.html#a-simple-question",
-    "href": "blog/posts/post1/Untitled.html#a-simple-question",
+    "objectID": "blog/posts/post1/Untitled.html#solving-the-problem",
+    "href": "blog/posts/post1/Untitled.html#solving-the-problem",
     "title": "Understanding Lagrange Multipliers",
-    "section": "",
-    "text": "Imagine you have 20 dollars to spend on two things: coffee and sandwiches. A coffee costs 2 dollars, while a sandwich costs 4 dollars. Naturally, you want to choose the combination that makes you as satisfied as possible.\nSuppose your satisfaction can be represented by the utility function\n$$\nU(x,y)=.\n$$"
+    "section": "Solving the Problem",
+    "text": "Solving the Problem\nTaking the first-order conditions gives\n\\[\n\\frac{\\partial \\mathcal L}{\\partial x}\n=\n\\frac{1}{2}\\sqrt{\\frac{y}{x}}-2\\lambda=0,\n\\]\n\\[\n\\frac{\\partial \\mathcal L}{\\partial y}\n=\n\\frac{1}{2}\\sqrt{\\frac{x}{y}}-4\\lambda=0,\n\\]\ntogether with the original constraint\n\\[\n2x+4y=20.\n\\]\nSolving these equations gives\n\\[\n\\boxed{(x^*,y^*)=(5,2.5)},\n\\]\nexactly the point we identified graphically."
   },
   {
-    "objectID": "blog/posts/post1/Untitled.html#here-x-is-the-number-of-coffees-and-y-is-the-number-of-sandwiches.",
-    "href": "blog/posts/post1/Untitled.html#here-x-is-the-number-of-coffees-and-y-is-the-number-of-sandwiches.",
+    "objectID": "blog/posts/post1/Untitled.html#what-does-lambda-mean",
+    "href": "blog/posts/post1/Untitled.html#what-does-lambda-mean",
     "title": "Understanding Lagrange Multipliers",
-    "section": "Here, \\(x\\) is the number of coffees and \\(y\\) is the number of sandwiches.",
-    "text": "Here, \\(x\\) is the number of coffees and \\(y\\) is the number of sandwiches."
+    "section": "What Does \\(\\lambda\\) Mean?",
+    "text": "What Does \\(\\lambda\\) Mean?\nThe multiplier is more than a mathematical trick. It is often called a shadow price: it measures how much the maximum value of the objective would increase if the constraint were relaxed by one unit.\nHere, \\(\\lambda\\) tells us approximately how much maximum utility would increase if we had one additional dollar to spend.\nFor this example,\n\\[\n\\lambda^*=\\frac{1}{4\\sqrt{2}}\\approx0.177.\n\\]\nSo one additional dollar would increase maximum utility by approximately 0.177 units."
   }
 ]
