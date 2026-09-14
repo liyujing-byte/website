@@ -1,10 +1,13 @@
 ---
-title: "Understanding Lagrange Multipliers"
+title: "My First Blog Post"
 date: 2026-09-12
 categories:
   - economics
   - mathematics
 ---
+
+# Understanding Lagrange Multipliers
+
 ## A Simple Example
 Imagine you have **20 dollars** to spend on two things: coffee and sandwiches. A coffee costs **2 dollars**, while a sandwich costs **4 dollars**. 
 
