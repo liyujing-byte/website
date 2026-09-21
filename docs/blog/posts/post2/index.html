@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-06-16">
+<meta name="dcterms.date" content="2026-09-20">
 
 <title>My Second Blog Post – Yujing Li</title>
 <style>
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -128,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title">
 <h1 class="title">My Second Blog Post</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">opinion</div>
+    <div class="quarto-category">data science</div>
     <div class="quarto-category">labor market</div>
   </div>
   </div>
@@ -141,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 16, 2026</p>
+      <p class="date">September 20, 2026</p>
     </div>
   </div>
   
@@ -153,8 +188,48 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="this-is-my-second-blog-post." class="level2">
-<h2 class="anchored" data-anchor-id="this-is-my-second-blog-post.">This is my second blog post.</h2>
+<section id="what-skills-matter-most-for-data-related-jobs" class="level2">
+<h2 class="anchored" data-anchor-id="what-skills-matter-most-for-data-related-jobs">What Skills Matter Most for Data-Related Jobs?</h2>
+<p>For students preparing for a career in the data field, deciding which technical skills to prioritise is often a difficult question. Recruitment announcement often list a variety of programming languages, data tools, cloud platforms and analysis methods. This raises a practical question: <strong>which technical skills appear most frequently in the recruitment announcement of data-related positions?</strong></p>
+<p>To explore this problem, I used the <code>rvest</code> package in R to scrape public recruitment information from the Greenhouse recruitment pages of four companies, Garner Health, Affirm, Arcana Analytics and Scale AI. I the analyzed the job descriptions of data-related positions to identify the frequency of various technical skills mentioned.</p>
+</section>
+<section id="collecting-the-job-postings" class="level2">
+<h2 class="anchored" data-anchor-id="collecting-the-job-postings">Collecting the Job Postings</h2>
+<p>I collected job postings from the public Greenhouse career pages of Garner Health, Affirm, Arcana Analytics, and Scale AI. These pages can be accessed publicly without logging in or bypassing any access restrictions.</p>
+<p>Using <code>rvest</code>, I identified relevant postings from each company’s job board and then extracted the main text from each individual job page. The function below illustrates the core scraping process:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>get_description <span class="ot">&lt;-</span> <span class="cf">function</span>(url) {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Sys.sleep</span>(<span class="dv">1</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_html</span>(url) <span class="sc">%&gt;%</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="st">"main"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_text2</span>()</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Because each career page contained many positions unrelated to the analysis, I filtered the listings and focused on data-related roles, such as Data Analyst, Data Engineer, Data Scientist, Quantitative Analyst, and Machine Learning positions.</p>
+<p>The initial scraping process produced <strong>21 job postings</strong> across the four companies.</p>
+</section>
+<section id="cleaning-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-the-data">Cleaning the Data</h2>
+<p>The initial scraping process selected 21 job postings. However, some positions are repeatedly released for different regions; for example, Affirm has released recruitment information for the United States and Canada for the same functional position. To avoid the impact of duplicate positions on the weight of results, these duplicates are eliminated in this post. The final dataset covers a total of <strong>19 unique data-related positions</strong> in these four companies. I then searched each job description for mentions of technical skills such as SQL, Python, Snowflake, dbt, AWS, Tableau, Power BI, Git, and machine learning.</p>
+</section>
+<section id="which-skills-appeared-most-often" class="level2">
+<h2 class="anchored" data-anchor-id="which-skills-appeared-most-often">Which Skills Appeared Most Often?</h2>
+<p>The results show a clear pattern in this sample. SQL and Python were the most frequently mentioned skills, each appearing in 12 of the 19 unique job postings (63.2%). Snowflake appeared in 36.8% of postings, while dbt and machine learning were each mentioned in 31.6%. AWS appeared in 26.3% of the postings.</p>
+<p>The figure below summarizes the frequency with which each technical skill appeared in the collected job descriptions. <img src="skills_plot.png" class="img-fluid" alt="Technical skills mentioned in 19 unique data-related job postings."></p>
+</section>
+<section id="what-should-students-prioritize" class="level2">
+<h2 class="anchored" data-anchor-id="what-should-students-prioritize">What Should Students Prioritize?</h2>
+<p>The results suggest that SQL and Python should be the primary focus for students preparing for data-related careers. Both were mentioned in 63.2% of the postings in this sample, making them the two most frequently mentioned technical skills.</p>
+<p>In addition to these basic skills, learning the tools used in modern data infrastructure can also benefit students. Snowflake was mentioned in 36.8% of the postings, while dbt and machine learning were each mentioned in 31.6%. AWS appeared in 26.3% of the postings. These results suggest that combining programming and database skills with relevant knowledge of cloud technology and data engineering tools is of great benefit to all kinds of data-related roles.</p>
+<p>Tableau and Power BI appeared less frequently in this sample. However, this does not necessarily mean that visualization tools are less valuable. The sample includes data engineering and machine learning positions as well as analyst roles, which may partly explain their lower frequency.</p>
+</section>
+<section id="limitations-and-takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-and-takeaway">Limitations and Takeaway</h2>
+<p>This analysis has several limitations. The final sample contains only 19 unique job postings from four companies, covering different types of data roles and seniority levels. Therefore, the results should not be interpreted as representative of the entire data job market. In addition, the analysis only measures whether a skill was mentioned in a job description, which does not necessarily mean that it was a formal requirement for the position.</p>
+<p>Despite these limitations, the analysis provides a useful starting point for students to decide which technical skills to develop. In this sample, SQL and Python are the most frequently mentioned skills. A practical learning strategy would therefore be to build a strong foundation in these two skills first, and then expand the learning tools such as Snowflake, dbt, and AWS or cultivate more specialized machine learning skills.</p>
 
 
 </section>

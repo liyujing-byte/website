@@ -39,7 +39,7 @@
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "My First Blog Post\n\n\n\n\n\n\n\n\nSep 12, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\nJun 16, 2026\n\n\n\n\n\nNo matching items"
+    "text": "My Second Blog Post\n\n\n\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy First Blog Post\n\n\n\n\n\n\n\n\nSep 12, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/posts/post1/Untitled.html",
@@ -145,5 +145,54 @@
     "title": "My First Blog Post",
     "section": "",
     "text": "The multiplier is more than a mathematical trick. It is often called a shadow price: it measures how much the maximum value of the objective would increase if the constraint were relaxed by one unit.\nHere, \\(\\lambda\\) tells us approximately how much maximum utility would increase if we had one additional dollar to spend.\nFor this example,\n\\[\n\\lambda^*=\\frac{1}{4\\sqrt{2}}\\approx0.177.\n\\]\nSo one additional dollar would increase maximum utility by approximately 0.177 units."
+  },
+  {
+    "objectID": "blog/posts/post2/index.html",
+    "href": "blog/posts/post2/index.html",
+    "title": "My Second Blog Post",
+    "section": "",
+    "text": "For students preparing for a career in the data field, deciding which technical skills to prioritise is often a difficult question. Recruitment announcement often list a variety of programming languages, data tools, cloud platforms and analysis methods. This raises a practical question: which technical skills appear most frequently in the recruitment announcement of data-related positions?\nTo explore this problem, I used the rvest package in R to scrape public recruitment information from the Greenhouse recruitment pages of four companies, Garner Health, Affirm, Arcana Analytics and Scale AI. I the analyzed the job descriptions of data-related positions to identify the frequency of various technical skills mentioned."
+  },
+  {
+    "objectID": "blog/posts/post2/index.html#what-skills-matter-most-for-data-related-jobs",
+    "href": "blog/posts/post2/index.html#what-skills-matter-most-for-data-related-jobs",
+    "title": "My Second Blog Post",
+    "section": "",
+    "text": "For students preparing for a career in the data field, deciding which technical skills to prioritise is often a difficult question. Recruitment announcement often list a variety of programming languages, data tools, cloud platforms and analysis methods. This raises a practical question: which technical skills appear most frequently in the recruitment announcement of data-related positions?\nTo explore this problem, I used the rvest package in R to scrape public recruitment information from the Greenhouse recruitment pages of four companies, Garner Health, Affirm, Arcana Analytics and Scale AI. I the analyzed the job descriptions of data-related positions to identify the frequency of various technical skills mentioned."
+  },
+  {
+    "objectID": "blog/posts/post2/index.html#collecting-the-job-postings",
+    "href": "blog/posts/post2/index.html#collecting-the-job-postings",
+    "title": "My Second Blog Post",
+    "section": "Collecting the Job Postings",
+    "text": "Collecting the Job Postings\nI collected job postings from the public Greenhouse career pages of Garner Health, Affirm, Arcana Analytics, and Scale AI. These pages can be accessed publicly without logging in or bypassing any access restrictions.\nUsing rvest, I identified relevant postings from each company’s job board and then extracted the main text from each individual job page. The function below illustrates the core scraping process:\n\nlibrary(rvest)\n\nget_description &lt;- function(url) {\n  Sys.sleep(1)\n\n  read_html(url) %&gt;%\n    html_elements(\"main\") %&gt;%\n    html_text2()\n}\n\nBecause each career page contained many positions unrelated to the analysis, I filtered the listings and focused on data-related roles, such as Data Analyst, Data Engineer, Data Scientist, Quantitative Analyst, and Machine Learning positions.\nThe initial scraping process produced 21 job postings across the four companies."
+  },
+  {
+    "objectID": "blog/posts/post2/index.html#cleaning-the-data",
+    "href": "blog/posts/post2/index.html#cleaning-the-data",
+    "title": "My Second Blog Post",
+    "section": "Cleaning the Data",
+    "text": "Cleaning the Data\nThe initial scraping process selected 21 job postings. However, some positions are repeatedly released for different regions; for example, Affirm has released recruitment information for the United States and Canada for the same functional position. To avoid the impact of duplicate positions on the weight of results, these duplicates are eliminated in this post. The final dataset covers a total of 19 unique data-related positions in these four companies. I then searched each job description for mentions of technical skills such as SQL, Python, Snowflake, dbt, AWS, Tableau, Power BI, Git, and machine learning."
+  },
+  {
+    "objectID": "blog/posts/post2/index.html#which-skills-appeared-most-often",
+    "href": "blog/posts/post2/index.html#which-skills-appeared-most-often",
+    "title": "My Second Blog Post",
+    "section": "Which Skills Appeared Most Often?",
+    "text": "Which Skills Appeared Most Often?\nThe results show a clear pattern in this sample. SQL and Python were the most frequently mentioned skills, each appearing in 12 of the 19 unique job postings (63.2%). Snowflake appeared in 36.8% of postings, while dbt and machine learning were each mentioned in 31.6%. AWS appeared in 26.3% of the postings.\nThe figure below summarizes the frequency with which each technical skill appeared in the collected job descriptions."
+  },
+  {
+    "objectID": "blog/posts/post2/index.html#what-should-students-prioritize",
+    "href": "blog/posts/post2/index.html#what-should-students-prioritize",
+    "title": "My Second Blog Post",
+    "section": "What Should Students Prioritize?",
+    "text": "What Should Students Prioritize?\nThe results suggest that SQL and Python should be the primary focus for students preparing for data-related careers. Both were mentioned in 63.2% of the postings in this sample, making them the two most frequently mentioned technical skills.\nIn addition to these basic skills, learning the tools used in modern data infrastructure can also benefit students. Snowflake was mentioned in 36.8% of the postings, while dbt and machine learning were each mentioned in 31.6%. AWS appeared in 26.3% of the postings. These results suggest that combining programming and database skills with relevant knowledge of cloud technology and data engineering tools is of great benefit to all kinds of data-related roles.\nTableau and Power BI appeared less frequently in this sample. However, this does not necessarily mean that visualization tools are less valuable. The sample includes data engineering and machine learning positions as well as analyst roles, which may partly explain their lower frequency."
+  },
+  {
+    "objectID": "blog/posts/post2/index.html#limitations-and-takeaway",
+    "href": "blog/posts/post2/index.html#limitations-and-takeaway",
+    "title": "My Second Blog Post",
+    "section": "Limitations and Takeaway",
+    "text": "Limitations and Takeaway\nThis analysis has several limitations. The final sample contains only 19 unique job postings from four companies, covering different types of data roles and seniority levels. Therefore, the results should not be interpreted as representative of the entire data job market. In addition, the analysis only measures whether a skill was mentioned in a job description, which does not necessarily mean that it was a formal requirement for the position.\nDespite these limitations, the analysis provides a useful starting point for students to decide which technical skills to develop. In this sample, SQL and Python are the most frequently mentioned skills. A practical learning strategy would therefore be to build a strong foundation in these two skills first, and then expand the learning tools such as Snowflake, dbt, and AWS or cultivate more specialized machine learning skills."
   }
 ]
