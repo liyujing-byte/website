@@ -39,7 +39,7 @@
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "My Second Blog Post\n\n\n\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy First Blog Post\n\n\n\n\n\n\n\n\nSep 12, 2026\n\n\n\n\n\nNo matching items"
+    "text": "My Third Blog Post\n\n\nHow age-specific participation and population aging shaped the U.S. labor-market recovery, 2019–2024.\n\n\n\n\n\nSep 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy First Blog Post\n\n\n\n\n\n\n\n\nSep 12, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/posts/post1/Untitled.html",
@@ -194,5 +194,40 @@
     "title": "My Second Blog Post",
     "section": "Limitations and Takeaway",
     "text": "Limitations and Takeaway\nThis analysis has several limitations. The final sample contains only 19 unique job postings from four companies, covering different types of data roles and seniority levels. Therefore, the results should not be interpreted as representative of the entire data job market. In addition, the analysis only measures whether a skill was mentioned in a job description, which does not necessarily mean that it was a formal requirement for the position.\nDespite these limitations, the analysis provides a useful starting point for students to decide which technical skills to develop. In this sample, SQL and Python are the most frequently mentioned skills. A practical learning strategy would therefore be to build a strong foundation in these two skills first, and then expand the learning tools such as Snowflake, dbt, and AWS or cultivate more specialized machine learning skills."
+  },
+  {
+    "objectID": "blog/posts/post3/index.html",
+    "href": "blog/posts/post3/index.html",
+    "title": "My Third Blog Post",
+    "section": "",
+    "text": "Did Americans return to the labor force after the pandemic? The answer depends on which Americans we examine. Using IPUMS CPS microdata, I ask how labor-force participation changed across age groups between 2019 and 2024, and how much the changing age mix matters for the overall comparison. This distinction matters because a lower national participation rate can reflect both changes within age groups and a larger population share in groups that participate less."
+  },
+  {
+    "objectID": "blog/posts/post3/index.html#why-an-older-america-can-have-a-lower-participation-rate-even-as-many-age-groups-recover",
+    "href": "blog/posts/post3/index.html#why-an-older-america-can-have-a-lower-participation-rate-even-as-many-age-groups-recover",
+    "title": "My Third Blog Post",
+    "section": "",
+    "text": "Did Americans return to the labor force after the pandemic? The answer depends on which Americans we examine. Using IPUMS CPS microdata, I ask how labor-force participation changed across age groups between 2019 and 2024, and how much the changing age mix matters for the overall comparison. This distinction matters because a lower national participation rate can reflect both changes within age groups and a larger population share in groups that participate less."
+  },
+  {
+    "objectID": "blog/posts/post3/index.html#measuring-participation",
+    "href": "blog/posts/post3/index.html#measuring-participation",
+    "title": "My Third Blog Post",
+    "section": "Measuring participation",
+    "text": "Measuring participation\nI use all 72 Basic Monthly CPS samples from 2019–2024, restricting the analysis to civilians aged 16 and older with valid labor-force status and positive weights. The resulting sample contains 6,146,546 person-month observations, not that many distinct people. LABFORCE identifies people who are employed or unemployed and in the labor force; participation is therefore different from employment.\nFor each month and age group, I divide the sum of WTFINL weights among labor-force participants by the sum among everyone in that group, then multiply by 100. Each annual estimate is the simple average of its twelve monthly rates. Weighting allows the sample to describe the U.S. civilian noninstitutional population. These estimates are not seasonally adjusted. They also need not equal published BLS figures, which use composite weights.\nThe core calculation in R is:\nmonthly_by_age &lt;- cps_clean[, .(\n  participation_rate = 100 * sum(WTFINL * in_labor_force) / sum(WTFINL)\n), by = .(YEAR, MONTH, age_group)]\n\nannual_by_age &lt;- monthly_by_age[, .(\n  participation_rate = mean(participation_rate)\n), by = .(YEAR, age_group)]"
+  },
+  {
+    "objectID": "blog/posts/post3/index.html#a-recovery-that-differed-by-age",
+    "href": "blog/posts/post3/index.html#a-recovery-that-differed-by-age",
+    "title": "My Third Blog Post",
+    "section": "A recovery that differed by age",
+    "text": "A recovery that differed by age\n\n\n\nFigure 1. Annual weighted labor-force participation rates for six age groups, 2019–2024.\n\n\nFigure 1 shows a decline in every age group in 2020, followed by different recovery paths. By 2024, participation among people aged 35–44 reached 84.77%, compared with 83.33% in 2019. Participation among those aged 65 and older was 19.88%, still below its 20.66% starting point. Several groups reached their lowest annual rate in 2021, showing why a single pandemic-year comparison would miss part of the adjustment.\nThe panels use separate vertical scales to make changes visible. Their levels also differ greatly: participation among those aged 35–44 is much higher than among those aged 65+. That difference becomes important when interpreting the national average.\n\n\n\nFigure 2. Percentage-point changes in weighted participation rates between 2019 and 2024.\n\n\nFigure 2 isolates the endpoint comparison. The largest increase among these groups was for ages 35–44, at 1.44 percentage points. Ages 45–54 and 55–64 rose by 0.88 and 0.66 points, respectively. Ages 16–24 were close to their starting level, increasing just 0.12 points. In contrast, the 65+ group declined by 0.78 points. These are differences in point estimates, not claims of statistical significance. Nor does the older group’s decline establish that particular individuals retired: the people comprising an age group change over time."
+  },
+  {
+    "objectID": "blog/posts/post3/index.html#the-age-mix-changes-the-national-story",
+    "href": "blog/posts/post3/index.html#the-age-mix-changes-the-national-story",
+    "title": "My Third Blog Post",
+    "section": "The age mix changes the national story",
+    "text": "The age mix changes the national story\n\n\n\nFigure 3. Actual and age-standardized participation rates, alongside the population share aged 65+.\n\n\nOverall participation fell from 63.40% in 2019 to 62.86% in 2024. How can that coexist with increases in five of six groups? Figure 3 shows that people aged 65+ grew from 20.40% to 22.23% of the population aged 16+. Giving more weight to a group with a low participation rate can lower the national average even when many group-specific rates rise.\nTo separate these patterns, I also calculate a standardized series using fourteen narrower age bands. Each month’s age-specific rates are combined with the age shares from the same calendar month in 2019. With that age structure held fixed, the 2024 rate is 63.96%, or 0.56 points above 2019. The 1.10-point gap between standardized and actual participation summarizes the age-composition difference evaluated at 2024 participation rates.\nThis is an accounting exercise, not a causal estimate of aging or the pandemic. Changes within the narrow bands remain, and pandemic-related nonresponse may affect comparisons. The CPS also interviews some people repeatedly, so I do not treat all person-months as independent observations or report naive confidence intervals.\nThe takeaway: by 2024, participation had surpassed its 2019 level for several working-age groups, while the overall rate remained lower. Assessing labor-market recovery requires looking at both age-specific participation and the population’s changing age composition.\n\nData source: IPUMS CPS, University of Minnesota, cps.ipums.org, Basic Monthly samples, January 2019–December 2024; extract downloaded September 24, 2026. Underlying CPS data are provided by the U.S. Census Bureau and Bureau of Labor Statistics. All figures and numerical results are calculated from the microdata. See the accompanying README for extraction details and replication commands.\nAnalysis code and replication instructions."
   }
 ]
