@@ -2,7 +2,7 @@
 title: "Which U.S. States Grew Fastest?"
 subtitle: "Population Growth Rates Versus Population Gains, 2020–2025"
 date: "2026-10-05"
-draft: true
+draft: false
 ---
 
 ## One question, two measures of growth

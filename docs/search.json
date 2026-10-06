@@ -39,7 +39,7 @@
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "My Third Blog Post\n\n\nHow age-specific participation and population aging shaped the U.S. labor-market recovery, 2019–2024.\n\n\n\n\n\nSep 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy First Blog Post\n\n\n\n\n\n\n\n\nSep 12, 2026\n\n\n\n\n\nNo matching items"
+    "text": "Which U.S. States Grew Fastest?\n\n\nPopulation Growth Rates Versus Population Gains, 2020–2025\n\n\n\n\n\n\n\n\nOct 5, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Third Blog Post\n\n\n\n\n\nHow age-specific participation and population aging shaped the U.S. labor-market recovery, 2019–2024.\n\n\n\n\n\nSep 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy First Blog Post\n\n\n\n\n\n\n\n\n\n\n\nSep 12, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/posts/post1/Untitled.html",
@@ -229,5 +229,68 @@
     "title": "My Third Blog Post",
     "section": "The age mix changes the national story",
     "text": "The age mix changes the national story\n\n\n\nFigure 3. Actual and age-standardized participation rates, alongside the population share aged 65+.\n\n\nOverall participation fell from 63.40% in 2019 to 62.86% in 2024. How can that coexist with increases in five of six groups? Figure 3 shows that people aged 65+ grew from 20.40% to 22.23% of the population aged 16+. Giving more weight to a group with a low participation rate can lower the national average even when many group-specific rates rise.\nTo separate these patterns, I also calculate a standardized series using fourteen narrower age bands. Each month’s age-specific rates are combined with the age shares from the same calendar month in 2019. With that age structure held fixed, the 2024 rate is 63.96%, or 0.56 points above 2019. The 1.10-point gap between standardized and actual participation summarizes the age-composition difference evaluated at 2024 participation rates.\nThis is an accounting exercise, not a causal estimate of aging or the pandemic. Changes within the narrow bands remain, and pandemic-related nonresponse may affect comparisons. The CPS also interviews some people repeatedly, so I do not treat all person-months as independent observations or report naive confidence intervals.\nThe takeaway: by 2024, participation had surpassed its 2019 level for several working-age groups, while the overall rate remained lower. Assessing labor-market recovery requires looking at both age-specific participation and the population’s changing age composition.\n\nData source: IPUMS CPS, University of Minnesota, cps.ipums.org, Basic Monthly samples, January 2019–December 2024; extract requested and downloaded through the IPUMS API on September 27, 2026. Underlying CPS data are provided by the U.S. Census Bureau and Bureau of Labor Statistics. All figures and numerical results are calculated from the microdata. See the accompanying README for extraction details and replication commands.\nAnalysis code and replication instructions."
+  },
+  {
+    "objectID": "blog/posts/post4/index.html",
+    "href": "blog/posts/post4/index.html",
+    "title": "Which U.S. States Grew Fastest?",
+    "section": "",
+    "text": "Which U.S. states experienced the most population growth between 2020 and 2025? The answer depends on what we mean by “most.” Idaho had the highest percentage growth, but Texas added the largest number of residents.\nThis distinction matters when interpreting demographic change. Percentage growth measures the size of a population change relative to a state’s starting population. Absolute population change measures how many additional residents a state has. Both provide useful context for understanding potential demand for housing, transportation, and public services, although population alone does not determine those needs.\nThis post asks: Which states grew fastest from 2020 to 2025, and how do rankings by percentage growth differ from rankings by additional residents? Three visualizations examine the distribution of growth across states, the paths taken by selected states, and the relationship between relative growth and absolute population gains."
+  },
+  {
+    "objectID": "blog/posts/post4/index.html#one-question-two-measures-of-growth",
+    "href": "blog/posts/post4/index.html#one-question-two-measures-of-growth",
+    "title": "Which U.S. States Grew Fastest?",
+    "section": "",
+    "text": "Which U.S. states experienced the most population growth between 2020 and 2025? The answer depends on what we mean by “most.” Idaho had the highest percentage growth, but Texas added the largest number of residents.\nThis distinction matters when interpreting demographic change. Percentage growth measures the size of a population change relative to a state’s starting population. Absolute population change measures how many additional residents a state has. Both provide useful context for understanding potential demand for housing, transportation, and public services, although population alone does not determine those needs.\nThis post asks: Which states grew fastest from 2020 to 2025, and how do rankings by percentage growth differ from rankings by additional residents? Three visualizations examine the distribution of growth across states, the paths taken by selected states, and the relationship between relative growth and absolute population gains."
+  },
+  {
+    "objectID": "blog/posts/post4/index.html#data-and-methods",
+    "href": "blog/posts/post4/index.html#data-and-methods",
+    "title": "Which U.S. States Grew Fastest?",
+    "section": "Data and methods",
+    "text": "Data and methods\nI use the U.S. Census Bureau’s Population Estimates Program, specifically the Vintage 2025 dataset, NST-EST2025-ALLDATA.csv. The analysis covers all 50 states and excludes Washington, D.C., Puerto Rico, and national or regional aggregates.\nAll population observations refer to July 1 of the corresponding year. The comparison therefore runs from July 1, 2020, to July 1, 2025. I use the annual population estimate for 2020 rather than the April 1, 2020 estimates base, keeping the reference date consistent across years.\nThe R script downloads the official CSV programmatically and saves the original file. It then filters the sample, checks that all 50 states are present without duplicate state codes, and verifies that the annual population values are numeric, nonmissing, and positive. The Census variable documentation provides the definitions and reference dates.\nI calculate two main measures:\n\\[\n\\text{Population change}_s = P_{s,2025} - P_{s,2020}\n\\]\n\\[\n\\text{Cumulative growth rate}_s =\n\\frac{P_{s,2025} - P_{s,2020}}{P_{s,2020}}\n\\times 100\n\\]\nHere, (P_{s,t}) denotes the population of state (s) in year (t). These are five-year cumulative growth rates, not annual growth rates.\nAll years come from the same data vintage because Census estimates may be revised between releases. The code, data, figures, and reproduction instructions are available in the analysis repository."
+  },
+  {
+    "objectID": "blog/posts/post4/index.html#idaho-led-in-percentage-growth",
+    "href": "blog/posts/post4/index.html#idaho-led-in-percentage-growth",
+    "title": "Which U.S. States Grew Fastest?",
+    "section": "1. Idaho led in percentage growth",
+    "text": "1. Idaho led in percentage growth\n\n\n\n\n\n\nFigure 1: Cumulative population growth across the 50 states, July 2020–July 2025.\n\n\n\nThe first figure ranks all 50 states by cumulative percentage growth. Idaho grew by 9.76%, followed by Florida at 8.67% and South Carolina at 8.54%. Texas ranked fourth, with growth of 8.45%.\nGrowth varied considerably across states. While the leading states expanded substantially relative to their starting populations, several states ended the period with fewer residents than in 2020. West Virginia, Hawaii, and Louisiana occupied the bottom three positions in the growth-rate ranking.\nThe percentage measure makes states with different population sizes more comparable. It answers how large the change was relative to each state’s initial population. Without this adjustment, a comparison based only on additional residents would emphasize large states and could overlook substantial relative changes in smaller ones.\nHowever, an endpoint ranking cannot show when those changes occurred. The next figure follows selected states through the intervening years."
+  },
+  {
+    "objectID": "blog/posts/post4/index.html#similar-rankings-can-conceal-different-paths",
+    "href": "blog/posts/post4/index.html#similar-rankings-can-conceal-different-paths",
+    "title": "Which U.S. States Grew Fastest?",
+    "section": "2. Similar rankings can conceal different paths",
+    "text": "2. Similar rankings can conceal different paths\n\n\n\n\n\n\nFigure 2: Population trajectories for the three highest-growth and three lowest-growth states, indexed to 2020.\n\n\n\nFor this comparison, I select the three highest-growth states and the three lowest-growth states using the cumulative rates shown in Figure 1. This explicit selection rule focuses on contrasting cases rather than choosing states after inspecting their annual paths.\nI normalize each state’s population to 100 in 2020:\n\\[\n\\text{Population index}_{s,t} =\n\\frac{P_{s,t}}{P_{s,2020}} \\times 100\n\\]\nAn index of 105 means that population is 5% above its 2020 level. Giving every state the same starting value allows the figure to compare relative changes rather than population size.\nIdaho, Florida, and South Carolina show sustained increases across the annual observations. Idaho’s population index reaches approximately 109.76 in 2025, consistent with its 9.76% cumulative growth.\nThe lower-growth states follow different paths. Louisiana’s population falls during the earlier years and then partially recovers, although it remains below its 2020 level in 2025. Hawaii and West Virginia also finish below their starting levels.\nThis adds information that the ranking alone cannot provide: a negative five-year change does not necessarily mean population declined in every year. Likewise, these six states are deliberately selected extremes, not a representative sample of all state trajectories."
+  },
+  {
+    "objectID": "blog/posts/post4/index.html#texas-added-the-most-residents",
+    "href": "blog/posts/post4/index.html#texas-added-the-most-residents",
+    "title": "Which U.S. States Grew Fastest?",
+    "section": "3. Texas added the most residents",
+    "text": "3. Texas added the most residents\n\n\n\n\n\n\nFigure 3: Cumulative percentage growth compared with absolute population change across the 50 states.\n\n\n\nThe third figure compares percentage growth on the horizontal axis with additional residents, measured in millions, on the vertical axis. Each point represents one state. Orange points identify states ranking in the top three by either measure.\nThe contrast between Idaho and Texas illustrates the central result. Idaho’s population increased by 180,405, placing it 14th in absolute population gains despite ranking first in percentage growth. Texas added 2,471,926 residents—the largest increase—while ranking fourth in percentage growth.\nFlorida ranked second on both measures, adding 1,871,193 residents and growing by 8.67%. Thus, the two rankings can agree, but they do not have to.\nThe difference follows from a simple relationship:\n\\[\n\\text{Population change}_s =\nP_{s,2020} \\times\n\\frac{\\text{Cumulative growth rate}_s}{100}\n\\]\nAbsolute gains depend on both the growth rate and the initial population. A larger state can add substantially more residents even when its percentage growth is lower.\nThe scatterplot is therefore a comparison of two related measures, not evidence that one variable causally affects the other. For interpreting demographic change, the useful question is which measure matches the issue being discussed. Relative growth describes expansion compared with the starting population; absolute gains describe the number of additional residents potentially requiring services."
+  },
+  {
+    "objectID": "blog/posts/post4/index.html#limitations",
+    "href": "blog/posts/post4/index.html#limitations",
+    "title": "Which U.S. States Grew Fastest?",
+    "section": "Limitations",
+    "text": "Limitations\nThis analysis describes population changes but does not identify their causes. Total population changes reflect births, deaths, migration, and estimation adjustments. The figures do not separate those components, so population growth should not be interpreted as migration alone.\nThe results also depend on the selected period and data vintage. A different starting year could produce different rankings, and future Census releases may revise the estimates. State-level totals additionally conceal differences among cities, suburbs, and rural areas within the same state.\nFinally, the economic implications require further evidence. These figures do not establish that taxes, housing costs, employment opportunities, or other policies caused the observed changes. Nor do population totals alone measure pressure on infrastructure or public-service capacity."
+  },
+  {
+    "objectID": "blog/posts/post4/index.html#conclusion",
+    "href": "blog/posts/post4/index.html#conclusion",
+    "title": "Which U.S. States Grew Fastest?",
+    "section": "Conclusion",
+    "text": "Conclusion\nBetween July 2020 and July 2025, Idaho grew fastest in percentage terms, while Texas gained the most residents. Florida ranked second on both measures.\nThe three figures show why population growth benefits from more than one perspective. Growth rates reveal relative expansion across differently sized states; annual indices show how that expansion or decline unfolded; and absolute gains reveal the scale of the change in residents.\nWhen describing a state as “fast-growing,” it is therefore important to specify the measure. Percentage growth and population gains answer related but distinct questions."
+  },
+  {
+    "objectID": "blog/posts/post4/index.html#data-and-reproducibility",
+    "href": "blog/posts/post4/index.html#data-and-reproducibility",
+    "title": "Which U.S. States Grew Fastest?",
+    "section": "Data and reproducibility",
+    "text": "Data and reproducibility\n\nData: U.S. Census Bureau, Vintage 2025 population estimates.\nDocumentation: Variable definitions and reference dates.\nCode and files: GitHub analysis repository.\n\nThe repository includes the original data, processed datasets, the complete R script, and all three figures. Its README explains how to reproduce the analysis using R, ggplot2, and ggrepel."
   }
 ]
