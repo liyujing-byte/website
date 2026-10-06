@@ -292,5 +292,12 @@
     "title": "My Fourth Blog Post",
     "section": "Data and reproducibility",
     "text": "Data and reproducibility\n\nData: U.S. Census Bureau, Vintage 2025 population estimates.\nDocumentation: Variable definitions and reference dates.\nCode and files: GitHub analysis repository.\n\nThe repository includes the original data, processed datasets, the complete R script, and all three figures. Its README explains how to reproduce the analysis using R, ggplot2, and ggrepel."
+  },
+  {
+    "objectID": "blog/posts/post4/index.html#which-states-grew-fastest",
+    "href": "blog/posts/post4/index.html#which-states-grew-fastest",
+    "title": "My Fourth Blog Post",
+    "section": "",
+    "text": "Which U.S. states experienced the most population growth between 2020 and 2025? The answer depends on what we mean by “most.” Idaho had the highest percentage growth, but Texas added the largest number of residents.\nThis distinction matters when interpreting demographic change. Percentage growth measures the size of a population change relative to a state’s starting population. Absolute population change measures how many additional residents a state has. Both provide useful context for understanding potential demand for housing, transportation, and public services, although population alone does not determine those needs.\nThis post asks: Which states grew fastest from 2020 to 2025, and how do rankings by percentage growth differ from rankings by additional residents? Three visualizations examine the distribution of growth across states, the paths taken by selected states, and the relationship between relative growth and absolute population gains."
   }
 ]

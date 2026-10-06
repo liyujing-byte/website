@@ -9,7 +9,7 @@ categories:
 draft: false
 ---
 
-## One question, two measures of growth
+## Which States Grew Fastest?
 
 Which U.S. states experienced the most population growth between 2020 and 2025? The answer depends on what we mean by “most.” Idaho had the highest percentage growth, but Texas added the largest number of residents.
 
