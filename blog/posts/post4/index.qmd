@@ -2,6 +2,10 @@
 title: "My Fourth Blog Post"
 subtitle: "Population Growth Rates Versus Population Gains, 2020–2025"
 date: "2026-10-05"
+categories:
+  - data science
+  - population growth
+  - U.S. Census
 draft: false
 ---
 
