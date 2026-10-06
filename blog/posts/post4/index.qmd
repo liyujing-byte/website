@@ -33,7 +33,7 @@ $$
 \times 100
 $$
 
-Here, \(P_{s,t}\) denotes the population of state \(s\) in year \(t\). These are **five-year cumulative growth rates**, not annual growth rates.
+Here, $P_{s,t}$ denotes the population of state $s$ in year $t$. These are **five-year cumulative growth rates**, not annual growth rates.
 
 All years come from the same data vintage because Census estimates may be revised between releases. The code, data, figures, and reproduction instructions are available in the [analysis repository](https://github.com/liyujing-byte/blogpost4_data_visualization).
 
