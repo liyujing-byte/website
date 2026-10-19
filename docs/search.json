@@ -39,7 +39,98 @@
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "My Fourth Blog Post\n\n\nPopulation Growth Rates Versus Population Gains, 2020–2025\n\n\n\n\n\n\n\n\nOct 5, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Third Blog Post\n\n\n\n\n\nHow age-specific participation and population aging shaped the U.S. labor-market recovery, 2019–2024.\n\n\n\n\n\nSep 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy First Blog Post\n\n\n\n\n\n\n\n\n\n\n\nSep 12, 2026\n\n\n\n\n\nNo matching items"
+    "text": "My Fifth Blog Post\n\n\nA Wealthy Region, Unequal Neighbors: Mapping Household Income in New York\n\n\n\n\n\n\n\n\nOct 18, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Fourth Blog Post\n\n\nPopulation Growth Rates Versus Population Gains, 2020–2025\n\n\n\n\n\n\n\n\nOct 5, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Third Blog Post\n\n\n\n\n\nHow age-specific participation and population aging shaped the U.S. labor-market recovery, 2019–2024.\n\n\n\n\n\nSep 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy First Blog Post\n\n\n\n\n\n\n\n\n\n\n\nSep 12, 2026\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog/posts/post3/index.html",
+    "href": "blog/posts/post3/index.html",
+    "title": "My Third Blog Post",
+    "section": "",
+    "text": "Did Americans return to the labor force after the pandemic? The answer depends on which Americans we examine. Using IPUMS CPS microdata, I ask how labor-force participation changed across age groups between 2019 and 2024, and how much the changing age mix matters for the overall comparison. This distinction matters because a lower national participation rate can reflect both changes within age groups and a larger population share in groups that participate less."
+  },
+  {
+    "objectID": "blog/posts/post3/index.html#why-an-older-america-can-have-a-lower-participation-rate-even-as-many-age-groups-recover",
+    "href": "blog/posts/post3/index.html#why-an-older-america-can-have-a-lower-participation-rate-even-as-many-age-groups-recover",
+    "title": "My Third Blog Post",
+    "section": "",
+    "text": "Did Americans return to the labor force after the pandemic? The answer depends on which Americans we examine. Using IPUMS CPS microdata, I ask how labor-force participation changed across age groups between 2019 and 2024, and how much the changing age mix matters for the overall comparison. This distinction matters because a lower national participation rate can reflect both changes within age groups and a larger population share in groups that participate less."
+  },
+  {
+    "objectID": "blog/posts/post3/index.html#measuring-participation",
+    "href": "blog/posts/post3/index.html#measuring-participation",
+    "title": "My Third Blog Post",
+    "section": "Measuring participation",
+    "text": "Measuring participation\nI use all 72 Basic Monthly CPS samples from 2019–2024, restricting the analysis to civilians aged 16 and older with valid labor-force status and positive weights. The resulting sample contains 6,146,546 person-month observations, not that many distinct people. LABFORCE identifies people who are employed or unemployed and in the labor force; participation is therefore different from employment.\nFor each month and age group, I divide the sum of WTFINL weights among labor-force participants by the sum among everyone in that group, then multiply by 100. Each annual estimate is the simple average of its twelve monthly rates. Weighting allows the sample to describe the U.S. civilian noninstitutional population. These estimates are not seasonally adjusted. They also need not equal published BLS figures, which use composite weights.\nThe core calculation in R is:\nmonthly_by_age &lt;- cps_clean[, .(\n  participation_rate = 100 * sum(WTFINL * in_labor_force) / sum(WTFINL)\n), by = .(YEAR, MONTH, age_group)]\n\nannual_by_age &lt;- monthly_by_age[, .(\n  participation_rate = mean(participation_rate)\n), by = .(YEAR, age_group)]"
+  },
+  {
+    "objectID": "blog/posts/post3/index.html#a-recovery-that-differed-by-age",
+    "href": "blog/posts/post3/index.html#a-recovery-that-differed-by-age",
+    "title": "My Third Blog Post",
+    "section": "A recovery that differed by age",
+    "text": "A recovery that differed by age\n\n\n\nFigure 1. Annual weighted labor-force participation rates for six age groups, 2019–2024.\n\n\nFigure 1 shows a decline in every age group in 2020, followed by different recovery paths. By 2024, participation among people aged 35–44 reached 84.77%, compared with 83.33% in 2019. Participation among those aged 65 and older was 19.88%, still below its 20.66% starting point. Several groups reached their lowest annual rate in 2021, showing why a single pandemic-year comparison would miss part of the adjustment.\nThe panels use separate vertical scales to make changes visible. Their levels also differ greatly: participation among those aged 35–44 is much higher than among those aged 65+. That difference becomes important when interpreting the national average.\n\n\n\nFigure 2. Percentage-point changes in weighted participation rates between 2019 and 2024.\n\n\nFigure 2 isolates the endpoint comparison. The largest increase among these groups was for ages 35–44, at 1.44 percentage points. Ages 45–54 and 55–64 rose by 0.88 and 0.66 points, respectively. Ages 16–24 were close to their starting level, increasing just 0.12 points. In contrast, the 65+ group declined by 0.78 points. These are differences in point estimates, not claims of statistical significance. Nor does the older group’s decline establish that particular individuals retired: the people comprising an age group change over time."
+  },
+  {
+    "objectID": "blog/posts/post3/index.html#the-age-mix-changes-the-national-story",
+    "href": "blog/posts/post3/index.html#the-age-mix-changes-the-national-story",
+    "title": "My Third Blog Post",
+    "section": "The age mix changes the national story",
+    "text": "The age mix changes the national story\n\n\n\nFigure 3. Actual and age-standardized participation rates, alongside the population share aged 65+.\n\n\nOverall participation fell from 63.40% in 2019 to 62.86% in 2024. How can that coexist with increases in five of six groups? Figure 3 shows that people aged 65+ grew from 20.40% to 22.23% of the population aged 16+. Giving more weight to a group with a low participation rate can lower the national average even when many group-specific rates rise.\nTo separate these patterns, I also calculate a standardized series using fourteen narrower age bands. Each month’s age-specific rates are combined with the age shares from the same calendar month in 2019. With that age structure held fixed, the 2024 rate is 63.96%, or 0.56 points above 2019. The 1.10-point gap between standardized and actual participation summarizes the age-composition difference evaluated at 2024 participation rates.\nThis is an accounting exercise, not a causal estimate of aging or the pandemic. Changes within the narrow bands remain, and pandemic-related nonresponse may affect comparisons. The CPS also interviews some people repeatedly, so I do not treat all person-months as independent observations or report naive confidence intervals.\nThe takeaway: by 2024, participation had surpassed its 2019 level for several working-age groups, while the overall rate remained lower. Assessing labor-market recovery requires looking at both age-specific participation and the population’s changing age composition.\n\nData source: IPUMS CPS, University of Minnesota, cps.ipums.org, Basic Monthly samples, January 2019–December 2024; extract requested and downloaded through the IPUMS API on September 27, 2026. Underlying CPS data are provided by the U.S. Census Bureau and Bureau of Labor Statistics. All figures and numerical results are calculated from the microdata. See the accompanying README for extraction details and replication commands.\nAnalysis code and replication instructions."
+  },
+  {
+    "objectID": "blog/posts/post5/index.html",
+    "href": "blog/posts/post5/index.html",
+    "title": "My Fifth Blog Post",
+    "section": "",
+    "text": "New York’s statewide median household income is $85,974, but that single number hides substantial geographic differences. Where are higher- and lower-income counties concentrated, and do nearby places have similar incomes? I use county-level income estimates and geographic boundaries to examine these questions. The maps reveal a concentration of high-income counties around New York City, alongside sharp differences within that same part of the state."
+  },
+  {
+    "objectID": "blog/posts/post5/index.html#data-and-approach",
+    "href": "blog/posts/post5/index.html#data-and-approach",
+    "title": "My Fifth Blog Post",
+    "section": "Data and approach",
+    "text": "Data and approach\nI use the Census Bureau’s 2020–2024 American Community Survey five-year estimates, table B19013, which measure median household income in 2024 inflation-adjusted dollars. These are pooled five-year estimates, not observations from 2024 alone. The geographic units are New York’s 62 counties, including the five counties corresponding to New York City’s boroughs.\nIn R, I join income estimates to 2024 Census cartographic county boundaries using five-digit county GEOIDs. All 62 counties match, with no missing income estimates. I project the boundaries into a New York coordinate system and use a continuous color scale so that the maps preserve differences in dollar values. Purple represents lower income estimates, while yellow represents higher estimates. The statewide median is taken directly from the state estimate, rather than calculated by averaging county medians.\n\n\n\nCounty-level median household income across all 62 New York counties."
+  },
+  {
+    "objectID": "blog/posts/post5/index.html#a-concentration-around-new-york-city",
+    "href": "blog/posts/post5/index.html#a-concentration-around-new-york-city",
+    "title": "My Fifth Blog Post",
+    "section": "A concentration around New York City",
+    "text": "A concentration around New York City\nThe five highest county point estimates belong to Nassau ($146,202), Suffolk ($130,686), Putnam ($126,257), Westchester ($118,976), and Rockland ($109,959). These counties form a visible concentration on Long Island and north of New York City. This pattern shows that high household incomes extend beyond Manhattan into surrounding counties; they are not confined to the city’s central county.\nLower estimates appear across much of western and northern New York. Chautauqua’s median is $58,351, while Cattaraugus’s is $59,540. However, the map is not a simple division between a wealthy southeast and a uniformly lower-income remainder. Saratoga, farther north, has an estimated median of $100,787. This exception matters: location within a broad region alone does not fully summarize a county’s income position."
+  },
+  {
+    "objectID": "blog/posts/post5/index.html#nearby-counties-can-differ-sharply",
+    "href": "blog/posts/post5/index.html#nearby-counties-can-differ-sharply",
+    "title": "My Fifth Blog Post",
+    "section": "Nearby counties can differ sharply",
+    "text": "Nearby counties can differ sharply\n\n\n\nSelected New York City-area counties shown at a larger scale, using the statewide income color scale.\n\n\nThe detail map reveals a contrast that is easy to miss at statewide scale. The Bronx has the lowest county estimate, $48,676, despite bordering Westchester, one of the highest-income counties. Nassau’s estimate is approximately 3.00 times the Bronx’s. Geographic proximity therefore does not imply similar household incomes.\nThis contrast also changes how the broader map should be interpreted. Describing the New York City area as uniformly affluent would conceal a substantial difference among nearby counties. A regional summary can combine places with very different household circumstances. The map identifies where these differences occur, but it does not establish whether employment opportunities, housing markets, household composition, or other factors explain them. Those mechanisms would require additional data and analysis."
+  },
+  {
+    "objectID": "blog/posts/post5/index.html#what-the-maps-cannot-tell-us",
+    "href": "blog/posts/post5/index.html#what-the-maps-cannot-tell-us",
+    "title": "My Fifth Blog Post",
+    "section": "What the maps cannot tell us",
+    "text": "What the maps cannot tell us\n\n\n\nSelected county income estimates with their published 90 percent margins of error and a statewide reference line.\n\n\nACS estimates have sampling uncertainty. The comparison chart retains the published 90 percent margins of error; close point estimates should not be treated as certain rankings. The analysis is descriptive and does not test spatial clustering formally.\nCounty medians also hide differences within counties. A high median does not mean every resident has a high income, and household income does not measure wealth or account for differences in household size and local living costs. Finally, large counties occupy more map space regardless of their population, so the map describes geography rather than the share of residents at each income level.\nThe main takeaway is that New York’s income geography combines a concentration of high-income counties around New York City with substantial differences among nearby places. Understanding the statewide economy requires looking both across regions and within them.\n\nCode, data, and replication instructions"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Yujing Li",
+    "section": "",
+    "text": "Yujing Li\nUniversity of Pennsylvaina\nWelcome to my personal website.\n\nQuick Links"
+  },
+  {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Resume",
+    "section": "",
+    "text": "Download my resume here:"
+  },
+  {
+    "objectID": "resume.html#resume-pdf",
+    "href": "resume.html#resume-pdf",
+    "title": "Resume",
+    "section": "Resume PDF",
+    "text": "Resume PDF"
   },
   {
     "objectID": "blog/posts/post1/Untitled.html",
@@ -77,18 +168,18 @@
     "text": "The geometric explanation is intuitive, but solving the problem graphically becomes difficult when there are many variables or constraints.\nThis is where the Lagrange multiplier method becomes useful.\nWe combine the objective function and the constraint into a single expression:\n\\[\n\\mathcal{L}(x,y,\\lambda)\n=\n\\sqrt{xy}\n+\n\\lambda(20-2x-4y).\n\\]\nAt first, this looks strange. We have introduced a completely new variable, \\(\\lambda\\), even though it was not part of the original problem.\nBut notice something important: for every feasible choice,\n\\[\n20-2x-4y=0.\n\\]\nTherefore,\n\\[\n\\lambda(20-2x-4y)=0.\n\\]\nSo along the budget constraint, adding this term does not change the value of the utility function at all.\nThe multiplier simply gives us a way to enforce the constraint while solving the optimization problem."
   },
   {
-    "objectID": "blog/posts/post1/Untitled.html#the-first-order-conditions",
-    "href": "blog/posts/post1/Untitled.html#the-first-order-conditions",
-    "title": "Understanding Lagrange Multipliers",
-    "section": "The First-Order Conditions",
-    "text": "The First-Order Conditions\nWe now differentiate the Lagrangian with respect to \\(x\\), \\(y\\), and \\(\\lambda\\):\n\\[\n\\frac{\\partial \\mathcal{L}}{\\partial x}\n=\n\\frac{1}{2}\\sqrt{\\frac{y}{x}}\n-\n2\\lambda\n=\n0,\n\\]\n\\[\n\\frac{\\partial \\mathcal{L}}{\\partial y}\n=\n\\frac{1}{2}\\sqrt{\\frac{x}{y}}\n-\n4\\lambda\n=\n0,\n\\]\nand\n\\[\n\\frac{\\partial \\mathcal{L}}{\\partial \\lambda}\n=\n20-2x-4y\n=\n0.\n\\] The third condition is especially instructive. We obtain the original budget constraint back when differentiating with respect to \\(\\lambda\\). Dividing the first two conditions eliminates \\(\\lambda\\):\n\\[\n\\frac{\\sqrt{y/x}}{\\sqrt{x/y}}\n=\n\\frac{2}{4}.\n\\]\nThis simplifies to\n\\[\n\\frac{y}{x}\n=\n\\frac{1}{2},\n\\]\nso\n\\[\nx=2y.\n\\]\nSubstituting this into the budget constraint,\n\\[\n2(2y)+4y=20,\n\\]\nwhich gives\n\\[\ny^*=2.5\n\\]\nand therefore\n\\[\nx^*=5.\n\\]\nSo the optimal bundle is\n\\[\n\\boxed{(x^*,y^*)=(5,2.5)}.\n\\]"
+    "objectID": "blog/posts/post1/Untitled.html#solving-the-problem",
+    "href": "blog/posts/post1/Untitled.html#solving-the-problem",
+    "title": "My First Blog Post",
+    "section": "",
+    "text": "Taking the first-order conditions gives\n\\[\n\\frac{\\partial \\mathcal L}{\\partial x}\n=\n\\frac{1}{2}\\sqrt{\\frac{y}{x}}-2\\lambda=0,\n\\]\n\\[\n\\frac{\\partial \\mathcal L}{\\partial y}\n=\n\\frac{1}{2}\\sqrt{\\frac{x}{y}}-4\\lambda=0,\n\\]\ntogether with the original constraint\n\\[\n2x+4y=20.\n\\]\nSolving these equations gives\n\\[\n\\boxed{(x^*,y^*)=(5,2.5)},\n\\]\nexactly the point we identified graphically."
   },
   {
-    "objectID": "blog/posts/post1/Untitled.html#what-does-lambda-actually-mean",
-    "href": "blog/posts/post1/Untitled.html#what-does-lambda-actually-mean",
-    "title": "Understanding Lagrange Multipliers",
-    "section": "What Does \\(\\lambda\\) Actually Mean?",
-    "text": "What Does \\(\\lambda\\) Actually Mean?\nSo far, \\(\\lambda\\) may still look like a mathematical trick that helps us solve the problem. But it has an important economic interpretation.\nThe Lagrange multiplier measures how much the best possible value of the objective function would increase if we relaxed the constraint by one unit.\nIn our example, the constraint is the 20-dollar budget. Therefore, \\(\\lambda\\) tells us approximately how much maximum utility would increase if we had one additional dollar to spend.\nThis is why \\(\\lambda\\) is often called a shadow price: it measures the value of having a little more of a scarce resource. For our optimal bundle, \\(x^*=5\\) and \\(y^*=2.5\\). Substituting these values into the first-order condition gives\n\\[\n\\lambda^*\n=\n\\frac{1}{4\\sqrt{2}}\n\\approx 0.177.\n\\]\nThis means that, near a budget of 20 dollars, one additional dollar would increase the maximum attainable utility by approximately 0.177 units.\nImportantly, \\(\\lambda\\) is a marginal value. It describes the effect of a small relaxation of the constraint, not necessarily the effect of a very large increase in the budget."
+    "objectID": "blog/posts/post1/Untitled.html#what-does-lambda-mean",
+    "href": "blog/posts/post1/Untitled.html#what-does-lambda-mean",
+    "title": "My First Blog Post",
+    "section": "",
+    "text": "The multiplier is more than a mathematical trick. It is often called a shadow price: it measures how much the maximum value of the objective would increase if the constraint were relaxed by one unit.\nHere, \\(\\lambda\\) tells us approximately how much maximum utility would increase if we had one additional dollar to spend.\nFor this example,\n\\[\n\\lambda^*=\\frac{1}{4\\sqrt{2}}\\approx0.177.\n\\]\nSo one additional dollar would increase maximum utility by approximately 0.177 units."
   },
   {
     "objectID": "blog/posts/post1/Untitled.html#so-why-does-the-method-work",
@@ -103,48 +194,6 @@
     "title": "My First Blog Post",
     "section": "",
     "text": "Lagrange multipliers can seem unintuitive because the method appears to introduce an arbitrary new variable and somehow turn a constrained problem into a set of ordinary equations.\nBut there is no magic involved.\nThe constraint limits where we are allowed to move. At an interior optimum, the objective function is tangent to that constraint, so their gradients must be parallel. The Lagrange multiplier captures this relationship.\nEven better, \\(\\lambda\\) has its own interpretation: it tells us how valuable it would be to relax the constraint slightly.\nSo the next time a mysterious \\(\\lambda\\) appears in an optimization problem, it may help to think of it not as a mathematical trick, but as the value of a little more freedom."
-  },
-  {
-    "objectID": "resume.html",
-    "href": "resume.html",
-    "title": "Resume",
-    "section": "",
-    "text": "Download my resume here:"
-  },
-  {
-    "objectID": "resume.html#resume-pdf",
-    "href": "resume.html#resume-pdf",
-    "title": "Resume",
-    "section": "Resume PDF",
-    "text": "Resume PDF"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Yujing Li",
-    "section": "",
-    "text": "Yujing Li\nUniversity of Pennsylvaina\nWelcome to my personal website.\n\nQuick Links"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "blog/posts/post1/Untitled.html#solving-the-problem",
-    "href": "blog/posts/post1/Untitled.html#solving-the-problem",
-    "title": "My First Blog Post",
-    "section": "",
-    "text": "Taking the first-order conditions gives\n\\[\n\\frac{\\partial \\mathcal L}{\\partial x}\n=\n\\frac{1}{2}\\sqrt{\\frac{y}{x}}-2\\lambda=0,\n\\]\n\\[\n\\frac{\\partial \\mathcal L}{\\partial y}\n=\n\\frac{1}{2}\\sqrt{\\frac{x}{y}}-4\\lambda=0,\n\\]\ntogether with the original constraint\n\\[\n2x+4y=20.\n\\]\nSolving these equations gives\n\\[\n\\boxed{(x^*,y^*)=(5,2.5)},\n\\]\nexactly the point we identified graphically."
-  },
-  {
-    "objectID": "blog/posts/post1/Untitled.html#what-does-lambda-mean",
-    "href": "blog/posts/post1/Untitled.html#what-does-lambda-mean",
-    "title": "My First Blog Post",
-    "section": "",
-    "text": "The multiplier is more than a mathematical trick. It is often called a shadow price: it measures how much the maximum value of the objective would increase if the constraint were relaxed by one unit.\nHere, \\(\\lambda\\) tells us approximately how much maximum utility would increase if we had one additional dollar to spend.\nFor this example,\n\\[\n\\lambda^*=\\frac{1}{4\\sqrt{2}}\\approx0.177.\n\\]\nSo one additional dollar would increase maximum utility by approximately 0.177 units."
   },
   {
     "objectID": "blog/posts/post2/index.html",
@@ -196,41 +245,6 @@
     "text": "Limitations and Takeaway\nThis analysis has several limitations. The final sample contains only 19 unique job postings from four companies, covering different types of data roles and seniority levels. Therefore, the results should not be interpreted as representative of the entire data job market. In addition, the analysis only measures whether a skill was mentioned in a job description, which does not necessarily mean that it was a formal requirement for the position.\nDespite these limitations, the analysis provides a useful starting point for students to decide which technical skills to develop. In this sample, SQL and Python are the most frequently mentioned skills. A practical learning strategy would therefore be to build a strong foundation in these two skills first, and then expand the learning tools such as Snowflake, dbt, and AWS or cultivate more specialized machine learning skills."
   },
   {
-    "objectID": "blog/posts/post3/index.html",
-    "href": "blog/posts/post3/index.html",
-    "title": "My Third Blog Post",
-    "section": "",
-    "text": "Did Americans return to the labor force after the pandemic? The answer depends on which Americans we examine. Using IPUMS CPS microdata, I ask how labor-force participation changed across age groups between 2019 and 2024, and how much the changing age mix matters for the overall comparison. This distinction matters because a lower national participation rate can reflect both changes within age groups and a larger population share in groups that participate less."
-  },
-  {
-    "objectID": "blog/posts/post3/index.html#why-an-older-america-can-have-a-lower-participation-rate-even-as-many-age-groups-recover",
-    "href": "blog/posts/post3/index.html#why-an-older-america-can-have-a-lower-participation-rate-even-as-many-age-groups-recover",
-    "title": "My Third Blog Post",
-    "section": "",
-    "text": "Did Americans return to the labor force after the pandemic? The answer depends on which Americans we examine. Using IPUMS CPS microdata, I ask how labor-force participation changed across age groups between 2019 and 2024, and how much the changing age mix matters for the overall comparison. This distinction matters because a lower national participation rate can reflect both changes within age groups and a larger population share in groups that participate less."
-  },
-  {
-    "objectID": "blog/posts/post3/index.html#measuring-participation",
-    "href": "blog/posts/post3/index.html#measuring-participation",
-    "title": "My Third Blog Post",
-    "section": "Measuring participation",
-    "text": "Measuring participation\nI use all 72 Basic Monthly CPS samples from 2019–2024, restricting the analysis to civilians aged 16 and older with valid labor-force status and positive weights. The resulting sample contains 6,146,546 person-month observations, not that many distinct people. LABFORCE identifies people who are employed or unemployed and in the labor force; participation is therefore different from employment.\nFor each month and age group, I divide the sum of WTFINL weights among labor-force participants by the sum among everyone in that group, then multiply by 100. Each annual estimate is the simple average of its twelve monthly rates. Weighting allows the sample to describe the U.S. civilian noninstitutional population. These estimates are not seasonally adjusted. They also need not equal published BLS figures, which use composite weights.\nThe core calculation in R is:\nmonthly_by_age &lt;- cps_clean[, .(\n  participation_rate = 100 * sum(WTFINL * in_labor_force) / sum(WTFINL)\n), by = .(YEAR, MONTH, age_group)]\n\nannual_by_age &lt;- monthly_by_age[, .(\n  participation_rate = mean(participation_rate)\n), by = .(YEAR, age_group)]"
-  },
-  {
-    "objectID": "blog/posts/post3/index.html#a-recovery-that-differed-by-age",
-    "href": "blog/posts/post3/index.html#a-recovery-that-differed-by-age",
-    "title": "My Third Blog Post",
-    "section": "A recovery that differed by age",
-    "text": "A recovery that differed by age\n\n\n\nFigure 1. Annual weighted labor-force participation rates for six age groups, 2019–2024.\n\n\nFigure 1 shows a decline in every age group in 2020, followed by different recovery paths. By 2024, participation among people aged 35–44 reached 84.77%, compared with 83.33% in 2019. Participation among those aged 65 and older was 19.88%, still below its 20.66% starting point. Several groups reached their lowest annual rate in 2021, showing why a single pandemic-year comparison would miss part of the adjustment.\nThe panels use separate vertical scales to make changes visible. Their levels also differ greatly: participation among those aged 35–44 is much higher than among those aged 65+. That difference becomes important when interpreting the national average.\n\n\n\nFigure 2. Percentage-point changes in weighted participation rates between 2019 and 2024.\n\n\nFigure 2 isolates the endpoint comparison. The largest increase among these groups was for ages 35–44, at 1.44 percentage points. Ages 45–54 and 55–64 rose by 0.88 and 0.66 points, respectively. Ages 16–24 were close to their starting level, increasing just 0.12 points. In contrast, the 65+ group declined by 0.78 points. These are differences in point estimates, not claims of statistical significance. Nor does the older group’s decline establish that particular individuals retired: the people comprising an age group change over time."
-  },
-  {
-    "objectID": "blog/posts/post3/index.html#the-age-mix-changes-the-national-story",
-    "href": "blog/posts/post3/index.html#the-age-mix-changes-the-national-story",
-    "title": "My Third Blog Post",
-    "section": "The age mix changes the national story",
-    "text": "The age mix changes the national story\n\n\n\nFigure 3. Actual and age-standardized participation rates, alongside the population share aged 65+.\n\n\nOverall participation fell from 63.40% in 2019 to 62.86% in 2024. How can that coexist with increases in five of six groups? Figure 3 shows that people aged 65+ grew from 20.40% to 22.23% of the population aged 16+. Giving more weight to a group with a low participation rate can lower the national average even when many group-specific rates rise.\nTo separate these patterns, I also calculate a standardized series using fourteen narrower age bands. Each month’s age-specific rates are combined with the age shares from the same calendar month in 2019. With that age structure held fixed, the 2024 rate is 63.96%, or 0.56 points above 2019. The 1.10-point gap between standardized and actual participation summarizes the age-composition difference evaluated at 2024 participation rates.\nThis is an accounting exercise, not a causal estimate of aging or the pandemic. Changes within the narrow bands remain, and pandemic-related nonresponse may affect comparisons. The CPS also interviews some people repeatedly, so I do not treat all person-months as independent observations or report naive confidence intervals.\nThe takeaway: by 2024, participation had surpassed its 2019 level for several working-age groups, while the overall rate remained lower. Assessing labor-market recovery requires looking at both age-specific participation and the population’s changing age composition.\n\nData source: IPUMS CPS, University of Minnesota, cps.ipums.org, Basic Monthly samples, January 2019–December 2024; extract requested and downloaded through the IPUMS API on September 27, 2026. Underlying CPS data are provided by the U.S. Census Bureau and Bureau of Labor Statistics. All figures and numerical results are calculated from the microdata. See the accompanying README for extraction details and replication commands.\nAnalysis code and replication instructions."
-  },
-  {
     "objectID": "blog/posts/post4/index.html",
     "href": "blog/posts/post4/index.html",
     "title": "My Fourth Blog Post",
@@ -238,8 +252,8 @@
     "text": "Which U.S. states experienced the most population growth between 2020 and 2025? The answer depends on what we mean by “most.” Idaho had the highest percentage growth, but Texas added the largest number of residents.\nThis distinction matters when interpreting demographic change. Percentage growth measures the size of a population change relative to a state’s starting population. Absolute population change measures how many additional residents a state has. Both provide useful context for understanding potential demand for housing, transportation, and public services, although population alone does not determine those needs.\nThis post asks: Which states grew fastest from 2020 to 2025, and how do rankings by percentage growth differ from rankings by additional residents? Three visualizations examine the distribution of growth across states, the paths taken by selected states, and the relationship between relative growth and absolute population gains."
   },
   {
-    "objectID": "blog/posts/post4/index.html#one-question-two-measures-of-growth",
-    "href": "blog/posts/post4/index.html#one-question-two-measures-of-growth",
+    "objectID": "blog/posts/post4/index.html#which-states-grew-fastest",
+    "href": "blog/posts/post4/index.html#which-states-grew-fastest",
     "title": "My Fourth Blog Post",
     "section": "",
     "text": "Which U.S. states experienced the most population growth between 2020 and 2025? The answer depends on what we mean by “most.” Idaho had the highest percentage growth, but Texas added the largest number of residents.\nThis distinction matters when interpreting demographic change. Percentage growth measures the size of a population change relative to a state’s starting population. Absolute population change measures how many additional residents a state has. Both provide useful context for understanding potential demand for housing, transportation, and public services, although population alone does not determine those needs.\nThis post asks: Which states grew fastest from 2020 to 2025, and how do rankings by percentage growth differ from rankings by additional residents? Three visualizations examine the distribution of growth across states, the paths taken by selected states, and the relationship between relative growth and absolute population gains."
@@ -294,10 +308,10 @@
     "text": "Data and reproducibility\n\nData: U.S. Census Bureau, Vintage 2025 population estimates.\nDocumentation: Variable definitions and reference dates.\nCode and files: GitHub analysis repository.\n\nThe repository includes the original data, processed datasets, the complete R script, and all three figures. Its README explains how to reproduce the analysis using R, ggplot2, and ggrepel."
   },
   {
-    "objectID": "blog/posts/post4/index.html#which-states-grew-fastest",
-    "href": "blog/posts/post4/index.html#which-states-grew-fastest",
-    "title": "My Fourth Blog Post",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "Which U.S. states experienced the most population growth between 2020 and 2025? The answer depends on what we mean by “most.” Idaho had the highest percentage growth, but Texas added the largest number of residents.\nThis distinction matters when interpreting demographic change. Percentage growth measures the size of a population change relative to a state’s starting population. Absolute population change measures how many additional residents a state has. Both provide useful context for understanding potential demand for housing, transportation, and public services, although population alone does not determine those needs.\nThis post asks: Which states grew fastest from 2020 to 2025, and how do rankings by percentage growth differ from rankings by additional residents? Three visualizations examine the distribution of growth across states, the paths taken by selected states, and the relationship between relative growth and absolute population gains."
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
   }
 ]
