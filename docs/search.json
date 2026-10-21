@@ -39,7 +39,7 @@
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "My Fifth Blog Post\n\n\nA Wealthy Region, Unequal Neighbors: Mapping Household Income in New York\n\n\n\n\n\n\n\n\nOct 18, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Fourth Blog Post\n\n\nPopulation Growth Rates Versus Population Gains, 2020–2025\n\n\n\n\n\n\n\n\nOct 5, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Third Blog Post\n\n\n\n\n\nHow age-specific participation and population aging shaped the U.S. labor-market recovery, 2019–2024.\n\n\n\n\n\nSep 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy First Blog Post\n\n\n\n\n\n\n\n\n\n\n\nSep 12, 2026\n\n\n\n\n\nNo matching items"
+    "text": "My Sixth Blog Post\n\n\nMatching Generations: How Income Timing Changes the Estimated IGE\n\n\n\n\n\n\n\n\nOct 21, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Fifth Blog Post\n\n\nA Wealthy Region, Unequal Neighbors: Mapping Household Income in New York\n\n\n\n\n\n\n\n\nOct 18, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Fourth Blog Post\n\n\nPopulation Growth Rates Versus Population Gains, 2020–2025\n\n\n\n\n\n\n\n\nOct 5, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Third Blog Post\n\n\n\n\n\nHow age-specific participation and population aging shaped the U.S. labor-market recovery, 2019–2024.\n\n\n\n\n\nSep 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy First Blog Post\n\n\n\n\n\n\n\n\n\n\n\nSep 12, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/posts/post3/index.html",
@@ -313,5 +313,47 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "blog/posts/post6/index.html",
+    "href": "blog/posts/post6/index.html",
+    "title": "My Sixth Blog Post",
+    "section": "",
+    "text": "How strongly is children’s income associated with their parents’ income, and does the answer depend on when income is measured? I use SQL within Python to match parents and children in a synthetic longitudinal dataset. The results illustrate how early-career income and temporary earnings fluctuations can make intergenerational persistence appear weaker."
+  },
+  {
+    "objectID": "blog/posts/post6/index.html#data-and-approach",
+    "href": "blog/posts/post6/index.html#data-and-approach",
+    "title": "My Sixth Blog Post",
+    "section": "Data and approach",
+    "text": "Data and approach\nI generate 5,000 synthetic families, each containing one designated parent and one child. The people table records permanent person IDs, origin-family IDs, and roles. The income table contains annual individual earnings, calendar years, and ages. Parents are observed at ages 38–42, while children are observed at ages 25–45. Income is expressed in constant hypothetical dollars.\nThe data are simulated rather than drawn from actual families. The random seed is 62026, and the population elasticity between latent long-run incomes is set to 0.40. Annual earnings include temporary shocks. Children’s early earnings reflect long-run differences less strongly than their midcareer earnings. These assumptions create an illustration, not an estimate of mobility in any country.\nPython’s built-in sqlite3 module loads the CSV files into an in-memory database. The complete script generates the data, executes the SQL queries, and saves the estimates and figure."
+  },
+  {
+    "objectID": "blog/posts/post6/index.html#matching-parents-and-children-with-sql",
+    "href": "blog/posts/post6/index.html#matching-parents-and-children-with-sql",
+    "title": "My Sixth Blog Post",
+    "section": "Matching parents and children with SQL",
+    "text": "Matching parents and children with SQL\nI first match the two generations using their origin-family IDs:\nSELECT\n    p.family_id,\n    p.person_id AS parent_id,\n    c.person_id AS child_id\nFROM people AS p\nJOIN people AS c\n    ON p.family_id = c.family_id\nWHERE p.role = 'parent'\n  AND c.role = 'child';\nSELECT chooses the output columns. JOIN connects records with matching family IDs. The aliases p and c allow the same table to represent both generations, while WHERE selects their roles. The resulting table contains 5,000 pairs, with no duplicate child matches.\nThis match is valid because each simulated family has explicitly assigned relationships. In real longitudinal data, sharing a household ID alone would not establish parenthood. Researchers need verified relationship codes or parent pointers, along with stable identifiers that remain useful after children move out."
+  },
+  {
+    "objectID": "blog/posts/post6/index.html#from-annual-records-to-income-measures",
+    "href": "blog/posts/post6/index.html#from-annual-records-to-income-measures",
+    "title": "My Sixth Blog Post",
+    "section": "From annual records to income measures",
+    "text": "From annual records to income measures\nFor a five-year measure, I group annual records by person:\nSELECT\n    person_id,\n    AVG(real_income) AS mean_income\nFROM income\nWHERE age BETWEEN 38 AND 42\n  AND real_income &gt; 0\nGROUP BY person_id\nHAVING COUNT(*) = 5;\nWHERE filters individual observations before aggregation. GROUP BY collects each person’s records, and AVG calculates their arithmetic mean income. HAVING retains only people with five valid years. For single-year measures, I select one age and require one observation.\nThe full query uses common table expressions to summarize parental and child income separately, then joins these summaries to the matched pairs using person IDs. Aggregating first avoids multiplying parent-year and child-year records in a many-to-many join. Every specification contains the same 5,000 families."
+  },
+  {
+    "objectID": "blog/posts/post6/index.html#income-timing-changes-the-estimated-association",
+    "href": "blog/posts/post6/index.html#income-timing-changes-the-estimated-association",
+    "title": "My Sixth Blog Post",
+    "section": "Income timing changes the estimated association",
+    "text": "Income timing changes the estimated association\nI estimate an OLS regression of log child income on log parental income, including an intercept. The slope is the intergenerational income elasticity, or IGE. For multi-year measures, income is averaged in levels before taking logarithms.\n\n\n\nIncome measurement\nParent ages\nChild ages\nIGE\nRobust SE\n\n\n\n\nEarly career, single year\n40\n25\n0.162\n0.010\n\n\nEarly career, five-year average\n38–42\n25–29\n0.241\n0.008\n\n\nMidcareer, single year\n40\n40\n0.304\n0.012\n\n\nMidcareer, five-year average\n38–42\n38–42\n0.390\n0.011\n\n\n\n\n\n\nEstimated IGEs for the same 5,000 synthetic parent–child pairs. Error bars show approximate 95 percent confidence intervals using HC1 robust standard errors.\n\n\nHolding parental single-year income fixed, measuring children at age 25 produces an IGE of 0.162, compared with 0.304 at age 40. This illustrates life-cycle bias: early earnings provide a less representative measure of long-run economic position under the simulation’s assumptions.\nThe midcareer five-year estimate is 0.390, close to the imposed long-run parameter of 0.40. An IGE of 0.390 means that 10 percent higher parental income is associated with approximately 3.9 percent higher child income. This is a descriptive association, not a causal effect."
+  },
+  {
+    "objectID": "blog/posts/post6/index.html#what-averaging-can-and-cannot-solve",
+    "href": "blog/posts/post6/index.html#what-averaging-can-and-cannot-solve",
+    "title": "My Sixth Blog Post",
+    "section": "What averaging can and cannot solve",
+    "text": "What averaging can and cannot solve\nAveraging smooths temporary earnings fluctuations. Temporary noise in parental income can attenuate the regression slope, so using several years can improve the measurement of persistent income.\nHowever, the early-career average still yields only 0.241. Repeated observations at young ages can retain systematic life-cycle distortion. That comparison also changes children’s measurement ages from 25 to 25–29, so the increase cannot be attributed to averaging alone.\nAll simulated incomes are positive and complete. Real applications must address inflation, missing observations, nonpositive earnings, and relationship verification. Confidence intervals describe sampling uncertainty within the simulation; they do not validate its assumptions.\nThe main takeaway is that matching generations requires attention to both identifiers and income measurement. Several years of income near representative career ages can better capture long-run economic status, while averaging alone cannot guarantee that life-cycle bias disappears.\nCode, data, and replication instructions"
   }
 ]
