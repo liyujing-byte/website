@@ -39,7 +39,7 @@
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "My Sixth Blog Post\n\n\nMatching Generations: How Income Timing Changes the Estimated IGE\n\n\n\n\n\n\n\n\nOct 21, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Fifth Blog Post\n\n\nA Wealthy Region, Unequal Neighbors: Mapping Household Income in New York\n\n\n\n\n\n\n\n\nOct 18, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Fourth Blog Post\n\n\nPopulation Growth Rates Versus Population Gains, 2020–2025\n\n\n\n\n\n\n\n\nOct 5, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Third Blog Post\n\n\n\n\n\nHow age-specific participation and population aging shaped the U.S. labor-market recovery, 2019–2024.\n\n\n\n\n\nSep 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy First Blog Post\n\n\n\n\n\n\n\n\n\n\n\nSep 12, 2026\n\n\n\n\n\nNo matching items"
+    "text": "My Seventh Blog Post\n\n\nDoes Higher Income Always Go with Longer Lives?\n\n\n\n\n\n\n\n\nOct 25, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Sixth Blog Post\n\n\nMatching Generations: How Income Timing Changes the Estimated IGE\n\n\n\n\n\n\n\n\nOct 21, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Fifth Blog Post\n\n\nA Wealthy Region, Unequal Neighbors: Mapping Household Income in New York\n\n\n\n\n\n\n\n\nOct 18, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Fourth Blog Post\n\n\nPopulation Growth Rates Versus Population Gains, 2020–2025\n\n\n\n\n\n\n\n\nOct 5, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Third Blog Post\n\n\n\n\n\nHow age-specific participation and population aging shaped the U.S. labor-market recovery, 2019–2024.\n\n\n\n\n\nSep 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy First Blog Post\n\n\n\n\n\n\n\n\n\n\n\nSep 12, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/posts/post3/index.html",
@@ -355,5 +355,54 @@
     "title": "My Sixth Blog Post",
     "section": "What averaging can and cannot solve",
     "text": "What averaging can and cannot solve\nAveraging smooths temporary earnings fluctuations. Temporary noise in parental income can attenuate the regression slope, so using several years can improve the measurement of persistent income.\nHowever, the early-career average still yields only 0.241. Repeated observations at young ages can retain systematic life-cycle distortion. That comparison also changes children’s measurement ages from 25 to 25–29, so the increase cannot be attributed to averaging alone.\nAll simulated incomes are positive and complete. Real applications must address inflation, missing observations, nonpositive earnings, and relationship verification. Confidence intervals describe sampling uncertainty within the simulation; they do not validate its assumptions.\nThe main takeaway is that matching generations requires attention to both identifiers and income measurement. Several years of income near representative career ages can better capture long-run economic status, while averaging alone cannot guarantee that life-cycle bias disappears.\nCode, data, and replication instructions"
+  },
+  {
+    "objectID": "blog/posts/post7/index.html",
+    "href": "blog/posts/post7/index.html",
+    "title": "My Seventh Blog Post",
+    "section": "",
+    "text": "Countries with higher GDP per capita often have longer life expectancies. But does this association describe every country, and does economic growth always coincide with improvements in longevity? An interactive view lets us investigate both the broad relationship and cases that a single snapshot can hide. I compare countries over time rather than treating national income as a complete measure of well-being."
+  },
+  {
+    "objectID": "blog/posts/post7/index.html#data-and-approach",
+    "href": "blog/posts/post7/index.html#data-and-approach",
+    "title": "My Seventh Blog Post",
+    "section": "Data and approach",
+    "text": "Data and approach\nI use the historical excerpt distributed with the gapminder R package: 142 countries observed every five years from 1952 to 2007, for 1,704 country-year observations. This is a historical sample, not a current global census. GDP per capita is reported in inflation-adjusted US dollars in the package documentation; life expectancy is measured at birth in years. GDP per capita measures national output per person, not household income. The script checks missing values, positive GDP and unique country-year records before creating the figures.\nEach dot represents one country, with color indicating continent. The horizontal axis uses a logarithmic scale, so equal distances represent equal GDP ratios rather than equal dollar differences. Axis ranges remain fixed across years. Countries receive equal marker sizes; population is available on hover. The chart therefore compares country outcomes without visually weighting large populations more heavily."
+  },
+  {
+    "objectID": "blog/posts/post7/index.html#explore-the-interactive-chart",
+    "href": "blog/posts/post7/index.html#explore-the-interactive-chart",
+    "title": "My Seventh Blog Post",
+    "section": "Explore the interactive chart",
+    "text": "Explore the interactive chart\n\nOpen this interactive figure in a separate tab\nDrag the year slider to compare observations. Hover over a dot to identify its country and read its GDP per capita, life expectancy and population. Click a continent in the legend to hide or restore it; double-click to isolate a continent. These controls let readers investigate specific observations and regional differences without placing every country label on one crowded static figure."
+  },
+  {
+    "objectID": "blog/posts/post7/index.html#three-patterns-to-investigate",
+    "href": "blog/posts/post7/index.html#three-patterns-to-investigate",
+    "title": "My Seventh Blog Post",
+    "section": "Three patterns to investigate",
+    "text": "Three patterns to investigate\nFirst, the cloud generally slopes upward: higher GDP per capita is associated with longer life expectancy. Moving between early and late years also reveals substantial improvements in longevity across much of the sample. Median life expectancy across the 142 countries rises from 45.1 years in 1952 to 71.9 in 2007. These are unweighted country medians, not population-weighted global life expectancy estimates. The slider makes the changing distribution visible while keeping the measurement scales constant.\nSecond, similar GDP does not guarantee similar longevity. In 2007, Costa Rica’s GDP per capita is approximately $9,645, compared with $9,270 in South Africa. Yet their life expectancies are 78.8 and 49.3 years, respectively: a 29.4-year difference. Hovering identifies the countries behind this large vertical separation. Filtering continents can then help readers see whether these observations resemble other countries in their respective regions. This comparison shows why a country’s position relative to the overall pattern deserves attention."
+  },
+  {
+    "objectID": "blog/posts/post7/index.html#follow-a-country",
+    "href": "blog/posts/post7/index.html#follow-a-country",
+    "title": "My Seventh Blog Post",
+    "section": "Follow a country",
+    "text": "Follow a country\n\nOpen this interactive figure in a separate tab\nThe supplementary dropdown traces five selected countries through all twelve observations. Select South Africa and hover over successive points. Between 1992 and 2007, its GDP per capita increases by 28.3%, while life expectancy falls from 61.9 to 49.3 years, a decline of 12.5 years. This third pattern distinguishes a cross-country association from a country’s trajectory. A 2007-only chart would show the endpoint but conceal the reversal. The selected countries are illustrative cases, not a random subsample or a formal test."
+  },
+  {
+    "objectID": "blog/posts/post7/index.html#what-can-we-conclude",
+    "href": "blog/posts/post7/index.html#what-can-we-conclude",
+    "title": "My Seventh Blog Post",
+    "section": "What can we conclude?",
+    "text": "What can we conclude?\nThese comparisons are descriptive. They do not estimate the causal effect of GDP on longevity or establish why particular countries differ. National averages conceal inequalities within countries, and five-year observations can miss short-lived changes. The filtered historical sample also excludes countries without complete records. Although the package identifies GDP as inflation-adjusted US dollars, its help page does not specify the price base; I retain its published units and avoid interpreting these values as present-day dollars.\nThe central takeaway is that GDP per capita provides useful context for health outcomes, but it does not determine them completely. Interactive identification and time comparisons reveal both substantial differences at similar economic levels and trajectories that depart from the overall association."
+  },
+  {
+    "objectID": "blog/posts/post7/index.html#sources-and-reproducibility",
+    "href": "blog/posts/post7/index.html#sources-and-reproducibility",
+    "title": "My Seventh Blog Post",
+    "section": "Sources and reproducibility",
+    "text": "Sources and reproducibility\nData: Gapminder R dataset documentation and Gapminder.\nComplete R code, data, and replication evidence"
   }
 ]
