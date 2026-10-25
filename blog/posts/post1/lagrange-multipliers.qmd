@@ -1,5 +1,5 @@
 ---
-title: "Why Add a Variable? Making Sense of Lagrange Multipliers"
+title: "My First Blog Post"
 date: 2026-09-12
 categories:
   - economics

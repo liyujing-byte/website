@@ -39,7 +39,7 @@
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "My Seventh Blog Post\n\n\nDoes Higher Income Always Go with Longer Lives?\n\n\n\n\n\n\n\n\nOct 25, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Sixth Blog Post\n\n\nMatching Generations: How Income Timing Changes the Estimated IGE\n\n\n\n\n\n\n\n\nOct 21, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Fifth Blog Post\n\n\nA Wealthy Region, Unequal Neighbors: Mapping Household Income in New York\n\n\n\n\n\n\n\n\nOct 18, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Fourth Blog Post\n\n\nPopulation Growth Rates Versus Population Gains, 2020–2025\n\n\n\n\n\n\n\n\nOct 5, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Third Blog Post\n\n\n\n\n\nHow age-specific participation and population aging shaped the U.S. labor-market recovery, 2019–2024.\n\n\n\n\n\nSep 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nWhy Add a Variable? Making Sense of Lagrange Multipliers\n\n\n\n\n\n\n\n\n\n\n\nSep 12, 2026\n\n\n\n\n\nNo matching items"
+    "text": "My Seventh Blog Post\n\n\nDoes Higher Income Always Go with Longer Lives?\n\n\n\n\n\n\n\n\nOct 25, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Sixth Blog Post\n\n\nMatching Generations: How Income Timing Changes the Estimated IGE\n\n\n\n\n\n\n\n\nOct 21, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Fifth Blog Post\n\n\nA Wealthy Region, Unequal Neighbors: Mapping Household Income in New York\n\n\n\n\n\n\n\n\nOct 18, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Fourth Blog Post\n\n\nPopulation Growth Rates Versus Population Gains, 2020–2025\n\n\n\n\n\n\n\n\nOct 5, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Third Blog Post\n\n\n\n\n\nHow age-specific participation and population aging shaped the U.S. labor-market recovery, 2019–2024.\n\n\n\n\n\nSep 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy Second Blog Post\n\n\n\n\n\n\n\n\n\n\n\nSep 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy First Blog Post\n\n\n\n\n\n\n\n\n\n\n\nSep 12, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/posts/post3/index.html",
@@ -345,49 +345,49 @@
   {
     "objectID": "blog/posts/post1/lagrange-multipliers.html",
     "href": "blog/posts/post1/lagrange-multipliers.html",
-    "title": "Why Add a Variable? Making Sense of Lagrange Multipliers",
+    "title": "My First Blog Post",
     "section": "",
     "text": "How can adding another unknown make a math problem easier? Lagrange multipliers introduce a mysterious variable, \\(\\lambda\\), when we already have a constraint to worry about. That can feel like creating more work rather than solving the problem.\nConsider dividing a limited budget between coffee and sandwiches. More of either brings satisfaction, but buying one leaves less money for the other. How do we find the best balance—and how much would an extra dollar help? This example explains why the multiplier appears and why it matters whenever money, time, or capacity is scarce."
   },
   {
     "objectID": "blog/posts/post1/lagrange-multipliers.html#the-puzzle-why-introduce-another-unknown",
     "href": "blog/posts/post1/lagrange-multipliers.html#the-puzzle-why-introduce-another-unknown",
-    "title": "Why Add a Variable? Making Sense of Lagrange Multipliers",
+    "title": "My First Blog Post",
     "section": "",
     "text": "How can adding another unknown make a math problem easier? Lagrange multipliers introduce a mysterious variable, \\(\\lambda\\), when we already have a constraint to worry about. That can feel like creating more work rather than solving the problem.\nConsider dividing a limited budget between coffee and sandwiches. More of either brings satisfaction, but buying one leaves less money for the other. How do we find the best balance—and how much would an extra dollar help? This example explains why the multiplier appears and why it matters whenever money, time, or capacity is scarce."
   },
   {
     "objectID": "blog/posts/post1/lagrange-multipliers.html#start-with-a-budget",
     "href": "blog/posts/post1/lagrange-multipliers.html#start-with-a-budget",
-    "title": "Why Add a Variable? Making Sense of Lagrange Multipliers",
+    "title": "My First Blog Post",
     "section": "Start with a budget",
     "text": "Start with a budget\nSuppose you have $20, coffee costs $2, and sandwiches cost $4. Let \\(x\\) and \\(y\\) denote their quantities, treating them as divisible amounts consumed over several days. Assume satisfaction is represented by\n\\[\nU(x,y)=\\sqrt{xy}.\n\\]\nAffordable choices satisfy \\(2x+4y\\leq20\\). Since more of either good increases utility, the best choice spends the full budget:\n\\[\n2x+4y=20,\\qquad y=5-\\frac{x}{2}.\n\\]\nAn indifference curve connects combinations giving the same utility. Higher curves represent greater satisfaction. We want the highest curve we can reach within our budget.\n\n# Illustrative model; no external data or packages are required.\nx &lt;- seq(0.1, 10, length.out = 500)\nutility_levels &lt;- c(2.5, sqrt(12.5), 4)\ncurve_colors &lt;- c(\"#7A8793\", \"#007F86\", \"#B15C2E\")\n\nplot(\n  x, 5 - x / 2,\n  type = \"l\", lwd = 2.5,\n  xlim = c(0, 10), ylim = c(0, 6),\n  xlab = \"Coffee quantity (x)\",\n  ylab = \"Sandwich quantity (y)\"\n)\n\nfor (i in seq_along(utility_levels)) {\n  lines(\n    x, utility_levels[i]^2 / x,\n    col = curve_colors[i], lty = i + 1, lwd = 2\n  )\n}\n\npoints(5, 2.5, pch = 19, cex = 1.2, col = \"#007F86\")\ntext(5, 2.5, \"Best bundle: (5, 2.5)\", pos = 3, cex = 0.85)\nlegend(\n  \"topright\",\n  legend = c(\"Budget: $20\", \"U = 2.50\", \"U = 3.54\", \"U = 4.00\"),\n  col = c(\"black\", curve_colors),\n  lty = c(1, 2, 3, 4), lwd = c(2.5, 2, 2, 2),\n  bty = \"n\", cex = 0.85\n)\n\n\n\n\n\n\n\nFigure 1: The best affordable bundle is where the budget line touches the utility curve U = 3.54. The curve U = 4 lies beyond the budget. Quantities and utility are illustrative.\n\n\n\n\n\nThe marked bundle reaches the highest affordable curve. Reaching the higher curve would require more than $20."
   },
   {
     "objectID": "blog/posts/post1/lagrange-multipliers.html#why-the-touching-point-matters",
     "href": "blog/posts/post1/lagrange-multipliers.html#why-the-touching-point-matters",
-    "title": "Why Add a Variable? Making Sense of Lagrange Multipliers",
+    "title": "My First Blog Post",
     "section": "Why the touching point matters",
     "text": "Why the touching point matters\nImagine shifting one dollar from sandwiches to coffee. If coffee generates more extra satisfaction per dollar, the original bundle cannot be optimal. We should keep reallocating spending until neither direction improves utility.\nMarginal utility is the extra satisfaction from a small increase in consumption. At our interior optimum, marginal utility per dollar is equal:\n\\[\n\\frac{MU_x}{2}=\\frac{MU_y}{4}=\\lambda.\n\\]\nThis balance explains tangency: the budget line and the utility curve have the same slope. The multiplier is their common marginal value of money."
   },
   {
     "objectID": "blog/posts/post1/lagrange-multipliers.html#turning-intuition-into-equations",
     "href": "blog/posts/post1/lagrange-multipliers.html#turning-intuition-into-equations",
-    "title": "Why Add a Variable? Making Sense of Lagrange Multipliers",
+    "title": "My First Blog Post",
     "section": "Turning intuition into equations",
     "text": "Turning intuition into equations\nWe write the Lagrangian as\n\\[\n\\mathcal L=\\sqrt{xy}+\\lambda(20-2x-4y).\n\\]\nWhy add a term that equals zero on the budget line? Its usefulness appears when we differentiate. The conditions for consumption balance marginal benefits against resource costs; the condition for \\(\\lambda\\) returns the budget constraint:\n\\[\n\\frac{\\partial\\mathcal L}{\\partial x}\n=\\frac12\\sqrt{\\frac yx}-2\\lambda=0,\n\\qquad\n\\frac{\\partial\\mathcal L}{\\partial y}\n=\\frac12\\sqrt{\\frac xy}-4\\lambda=0,\n\\]\n\\[\n\\frac{\\partial\\mathcal L}{\\partial\\lambda}=20-2x-4y=0.\n\\]\nDividing the first two conditions gives \\(y/x=1/2\\). Substituting into the budget yields\n\\[\nx^*=5,\\qquad y^*=2.5,\\qquad\n\\lambda^*=\\frac{1}{4\\sqrt2}\\approx0.177.\n\\]\nThe endpoints give zero utility, and along the budget \\(U^2=5x-x^2/2\\) is maximized at \\(x=5\\). Thus this solution is the best affordable bundle, not merely a stationary point."
   },
   {
     "objectID": "blog/posts/post1/lagrange-multipliers.html#what-would-one-more-dollar-change",
     "href": "blog/posts/post1/lagrange-multipliers.html#what-would-one-more-dollar-change",
-    "title": "Why Add a Variable? Making Sense of Lagrange Multipliers",
+    "title": "My First Blog Post",
     "section": "What would one more dollar change?",
     "text": "What would one more dollar change?\nThe multiplier is a shadow price: it measures how maximum utility changes when the budget increases slightly. For a general budget \\(B\\), the same calculation gives\n\\[\nx^*(B)=\\frac B4,\\qquad y^*(B)=\\frac B8,\n\\qquad U^*(B)=\\frac{B}{4\\sqrt2}.\n\\]\nAt $21, the best bundle becomes 5.25 coffees and 2.625 sandwiches. Maximum utility increases from approximately 3.536 to 3.712—about 0.177 units. Here the prediction is exact because \\(U^*(B)\\) is linear; generally, shadow prices provide a local approximation.\nThis interpretation helps us evaluate scarce resources. In a profit-maximization problem, a multiplier on machine capacity could measure the additional profit from another hour. Comparing that benefit with the cost of obtaining the hour helps inform whether expanding capacity is worthwhile.\nOur utility units are an assumed satisfaction scale, however, so 0.177 is neither a dollar amount nor a directly observed happiness score."
   },
   {
     "objectID": "blog/posts/post1/lagrange-multipliers.html#the-takeaway",
     "href": "blog/posts/post1/lagrange-multipliers.html#the-takeaway",
-    "title": "Why Add a Variable? Making Sense of Lagrange Multipliers",
+    "title": "My First Blog Post",
     "section": "The takeaway",
     "text": "The takeaway\nWhen resources are limited, ask two questions: Have we allocated what we have well, and how valuable would a little more be? Here, equal marginal utility per dollar answers the first; \\(\\lambda\\) answers the second. Adding a variable links our choices through the resource they share. What initially looks like a mathematical trick measures the value of a little more freedom."
   }
