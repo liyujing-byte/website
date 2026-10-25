@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2026-09-12">
 
-<title>My First Blog Post – Yujing Li</title>
+<title>Why Add a Variable? Making Sense of Lagrange Multipliers – Yujing Li</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -155,7 +190,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">My First Blog Post</h1>
+<h1 class="title">Why Add a Variable? Making Sense of Lagrange Multipliers</h1>
   <div class="quarto-categories">
     <div class="quarto-category">economics</div>
     <div class="quarto-category">mathematics</div>
@@ -182,136 +217,116 @@ window.Quarto = {
 </header>
 
 
-<section id="understanding-lagrange-multipliers" class="level1">
-<h1>Understanding Lagrange Multipliers</h1>
-<section id="a-simple-example" class="level2">
-<h2 class="anchored" data-anchor-id="a-simple-example">A Simple Example</h2>
-<p>Imagine you have <strong>20 dollars</strong> to spend on two things: coffee and sandwiches. A coffee costs <strong>2 dollars</strong>, while a sandwich costs <strong>4 dollars</strong>.</p>
-<p>Suppose your satisfaction can be represented by the utility function</p>
+<section id="the-puzzle-why-introduce-another-unknown" class="level2">
+<h2 class="anchored" data-anchor-id="the-puzzle-why-introduce-another-unknown">The puzzle: why introduce another unknown?</h2>
+<p>How can adding another unknown make a math problem easier? Lagrange multipliers introduce a mysterious variable, <span class="math inline">\(\lambda\)</span>, when we already have a constraint to worry about. That can feel like creating more work rather than solving the problem.</p>
+<p>Consider dividing a limited budget between coffee and sandwiches. More of either brings satisfaction, but buying one leaves less money for the other. How do we find the best balance—and how much would an extra dollar help? This example explains why the multiplier appears and why it matters whenever money, time, or capacity is scarce.</p>
+</section>
+<section id="start-with-a-budget" class="level2">
+<h2 class="anchored" data-anchor-id="start-with-a-budget">Start with a budget</h2>
+<p>Suppose you have <strong>$20</strong>, coffee costs <strong>$2</strong>, and sandwiches cost <strong>$4</strong>. Let <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> denote their quantities, treating them as divisible amounts consumed over several days. Assume satisfaction is represented by</p>
 <p><span class="math display">\[
 U(x,y)=\sqrt{xy}.
 \]</span></p>
-<p>Here, <span class="math inline">\(x\)</span> is the number of coffees and <span class="math inline">\(y\)</span> is the number of sandwiches.</p>
-</section>
-<section id="the-constraint" class="level2">
-<h2 class="anchored" data-anchor-id="the-constraint">The Constraint</h2>
-<p>Since spending cannot exceed 20 dollars, the budget constraint is</p>
+<p>Affordable choices satisfy <span class="math inline">\(2x+4y\leq20\)</span>. Since more of either good increases utility, the best choice spends the full budget:</p>
 <p><span class="math display">\[
-2x+4y=20.
+2x+4y=20,\qquad y=5-\frac{x}{2}.
 \]</span></p>
-<p>This means we cannot freely maximize utility: our choices must stay on the budget line.</p>
-<p>Rearranging the equation gives</p>
-<p><span class="math display">\[
-y = 5 - \frac{1}{2}x.
-\]</span></p>
-<p>This equation describes all combinations that use the entire budget.</p>
-<p>The challenge is therefore not simply to maximize utility, but to find the highest possible utility <strong>while staying on the budget constraint</strong>.</p>
+<p>An <strong>indifference curve</strong> connects combinations giving the same utility. Higher curves represent greater satisfaction. We want the highest curve we can reach within our budget.</p>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Illustrative model; no external data or packages are required.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.1</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>utility_levels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="fu">sqrt</span>(<span class="fl">12.5</span>), <span class="dv">4</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>curve_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#7A8793"</span>, <span class="st">"#007F86"</span>, <span class="st">"#B15C2E"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  x, <span class="dv">5</span> <span class="sc">-</span> x <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="fl">2.5</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Coffee quantity (x)"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Sandwich quantity (y)"</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(utility_levels)) {</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    x, utility_levels[i]<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> x,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> curve_colors[i], <span class="at">lty =</span> i <span class="sc">+</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">5</span>, <span class="fl">2.5</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex =</span> <span class="fl">1.2</span>, <span class="at">col =</span> <span class="st">"#007F86"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">5</span>, <span class="fl">2.5</span>, <span class="st">"Best bundle: (5, 2.5)"</span>, <span class="at">pos =</span> <span class="dv">3</span>, <span class="at">cex =</span> <span class="fl">0.85</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"topright"</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Budget: $20"</span>, <span class="st">"U = 2.50"</span>, <span class="st">"U = 3.54"</span>, <span class="st">"U = 4.00"</span>),</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, curve_colors),</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="at">lwd =</span> <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>),</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">cex =</span> <span class="fl">0.85</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-budget" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-budget" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A downward-sloping budget line touches the utility curve U equals 3.54 at five coffees and two and a half sandwiches. A lower utility curve is affordable and a higher curve is beyond the budget.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-budget-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Untitled_files/figure-html/fig-budget-1.png" class="img-fluid figure-img" width="672">
+<img src="Untitled_files/figure-html/fig-budget-1.png" class="img-fluid figure-img" alt="A downward-sloping budget line touches the utility curve U equals 3.54 at five coffees and two and a half sandwiches. A lower utility curve is affordable and a higher curve is beyond the budget." width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-budget-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Budget constraint and indifference curves
+Figure&nbsp;1: The best affordable bundle is where the budget line touches the utility curve U = 3.54. The curve U = 4 lies beyond the budget. Quantities and utility are illustrative.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p>The marked bundle reaches the highest affordable curve. Reaching the higher curve would require more than $20.</p>
 </section>
-<section id="why-tangency-matters" class="level2">
-<h2 class="anchored" data-anchor-id="why-tangency-matters">Why Tangency Matters</h2>
-<p>Graphically, the optimum occurs where the highest attainable indifference curve is tangent to the budget line. In this example, the optimal point is</p>
+<section id="why-the-touching-point-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-the-touching-point-matters">Why the touching point matters</h2>
+<p>Imagine shifting one dollar from sandwiches to coffee. If coffee generates more extra satisfaction per dollar, the original bundle cannot be optimal. We should keep reallocating spending until neither direction improves utility.</p>
+<p><strong>Marginal utility</strong> is the extra satisfaction from a small increase in consumption. At our interior optimum, marginal utility per dollar is equal:</p>
 <p><span class="math display">\[
-(x,y)=(5,2.5).
+\frac{MU_x}{2}=\frac{MU_y}{4}=\lambda.
 \]</span></p>
-<p>At an interior optimum, the two curves have the same slope, so</p>
-<p><span class="math display">\[
-\frac{MU_x}{MU_y}=\frac{p_x}{p_y}.
-\]</span></p>
-<p>This tangency condition is the key intuition behind the Lagrange multiplier method.</p>
+<p>This balance explains tangency: the budget line and the utility curve have the same slope. The multiplier is their common marginal value of money.</p>
 </section>
-<section id="enter-the-lagrangian" class="level2">
-<h2 class="anchored" data-anchor-id="enter-the-lagrangian">Enter the Lagrangian</h2>
-<p>The geometric explanation is intuitive, but solving the problem graphically becomes difficult when there are many variables or constraints.</p>
-<p>This is where the Lagrange multiplier method becomes useful.</p>
-<p>We combine the objective function and the constraint into a single expression:</p>
+<section id="turning-intuition-into-equations" class="level2">
+<h2 class="anchored" data-anchor-id="turning-intuition-into-equations">Turning intuition into equations</h2>
+<p>We write the Lagrangian as</p>
 <p><span class="math display">\[
-\mathcal{L}(x,y,\lambda)
-=
-\sqrt{xy}
-+
-\lambda(20-2x-4y).
+\mathcal L=\sqrt{xy}+\lambda(20-2x-4y).
 \]</span></p>
-<p>At first, this looks strange. We have introduced a completely new variable, <span class="math inline">\(\lambda\)</span>, even though it was not part of the original problem.</p>
-<p>But notice something important: for every feasible choice,</p>
+<p>Why add a term that equals zero on the budget line? Its usefulness appears when we differentiate. The conditions for consumption balance marginal benefits against resource costs; the condition for <span class="math inline">\(\lambda\)</span> returns the budget constraint:</p>
 <p><span class="math display">\[
-20-2x-4y=0.
+\frac{\partial\mathcal L}{\partial x}
+=\frac12\sqrt{\frac yx}-2\lambda=0,
+\qquad
+\frac{\partial\mathcal L}{\partial y}
+=\frac12\sqrt{\frac xy}-4\lambda=0,
 \]</span></p>
-<p>Therefore,</p>
 <p><span class="math display">\[
-\lambda(20-2x-4y)=0.
+\frac{\partial\mathcal L}{\partial\lambda}=20-2x-4y=0.
 \]</span></p>
-<p>So along the budget constraint, adding this term does not change the value of the utility function at all.</p>
-<p>The multiplier simply gives us a way to enforce the constraint while solving the optimization problem.</p>
+<p>Dividing the first two conditions gives <span class="math inline">\(y/x=1/2\)</span>. Substituting into the budget yields</p>
+<p><span class="math display">\[
+x^*=5,\qquad y^*=2.5,\qquad
+\lambda^*=\frac{1}{4\sqrt2}\approx0.177.
+\]</span></p>
+<p>The endpoints give zero utility, and along the budget <span class="math inline">\(U^2=5x-x^2/2\)</span> is maximized at <span class="math inline">\(x=5\)</span>. Thus this solution is the best affordable bundle, not merely a stationary point.</p>
 </section>
-<section id="solving-the-problem" class="level2">
-<h2 class="anchored" data-anchor-id="solving-the-problem">Solving the Problem</h2>
-<p>Taking the first-order conditions gives</p>
+<section id="what-would-one-more-dollar-change" class="level2">
+<h2 class="anchored" data-anchor-id="what-would-one-more-dollar-change">What would one more dollar change?</h2>
+<p>The multiplier is a <strong>shadow price</strong>: it measures how maximum utility changes when the budget increases slightly. For a general budget <span class="math inline">\(B\)</span>, the same calculation gives</p>
 <p><span class="math display">\[
-\frac{\partial \mathcal L}{\partial x}
-=
-\frac{1}{2}\sqrt{\frac{y}{x}}-2\lambda=0,
+x^*(B)=\frac B4,\qquad y^*(B)=\frac B8,
+\qquad U^*(B)=\frac{B}{4\sqrt2}.
 \]</span></p>
-<p><span class="math display">\[
-\frac{\partial \mathcal L}{\partial y}
-=
-\frac{1}{2}\sqrt{\frac{x}{y}}-4\lambda=0,
-\]</span></p>
-<p>together with the original constraint</p>
-<p><span class="math display">\[
-2x+4y=20.
-\]</span></p>
-<p>Solving these equations gives</p>
-<p><span class="math display">\[
-\boxed{(x^*,y^*)=(5,2.5)},
-\]</span></p>
-<p>exactly the point we identified graphically.</p>
+<p>At $21, the best bundle becomes 5.25 coffees and 2.625 sandwiches. Maximum utility increases from approximately 3.536 to 3.712—about 0.177 units. Here the prediction is exact because <span class="math inline">\(U^*(B)\)</span> is linear; generally, shadow prices provide a local approximation.</p>
+<p>This interpretation helps us evaluate scarce resources. In a profit-maximization problem, a multiplier on machine capacity could measure the additional profit from another hour. Comparing that benefit with the cost of obtaining the hour helps inform whether expanding capacity is worthwhile.</p>
+<p>Our utility units are an assumed satisfaction scale, however, so 0.177 is neither a dollar amount nor a directly observed happiness score.</p>
 </section>
-<section id="what-does-lambda-mean" class="level2">
-<h2 class="anchored" data-anchor-id="what-does-lambda-mean">What Does <span class="math inline">\(\lambda\)</span> Mean?</h2>
-<p>The multiplier is more than a mathematical trick. It is often called a <strong>shadow price</strong>: it measures how much the maximum value of the objective would increase if the constraint were relaxed by one unit.</p>
-<p>Here, <span class="math inline">\(\lambda\)</span> tells us approximately how much maximum utility would increase if we had one additional dollar to spend.</p>
-<p>For this example,</p>
-<p><span class="math display">\[
-\lambda^*=\frac{1}{4\sqrt{2}}\approx0.177.
-\]</span></p>
-<p>So one additional dollar would increase maximum utility by approximately 0.177 units.</p>
-</section>
-<section id="so-why-does-the-method-work" class="level2">
-<h2 class="anchored" data-anchor-id="so-why-does-the-method-work">So Why Does the Method Work?</h2>
-<p>The key idea is not the symbol <span class="math inline">\(\lambda\)</span> itself. The method works because, at a constrained optimum, there is no feasible direction in which we can move and improve the objective.</p>
-<p>Geometrically, the objective function and the constraint are tangent at the optimum. Their gradients therefore point in the same direction:</p>
-<p><span class="math display">\[
-\nabla f
-=
-\lambda \nabla g.
-\]</span></p>
-<p>The multiplier <span class="math inline">\(\lambda\)</span> tells us how the two gradients are scaled relative to each other.</p>
-<p>This is exactly what the first-order conditions of the Lagrangian impose. What initially looks like an artificial mathematical trick is really an algebraic way of expressing the geometry of constrained optimization.</p>
-</section>
-<section id="key-points" class="level2">
-<h2 class="anchored" data-anchor-id="key-points">Key Points</h2>
-<p>Lagrange multipliers can seem unintuitive because the method appears to introduce an arbitrary new variable and somehow turn a constrained problem into a set of ordinary equations.</p>
-<p>But there is no magic involved.</p>
-<p>The constraint limits where we are allowed to move. At an interior optimum, the objective function is tangent to that constraint, so their gradients must be parallel. The Lagrange multiplier captures this relationship.</p>
-<p>Even better, <span class="math inline">\(\lambda\)</span> has its own interpretation: it tells us how valuable it would be to relax the constraint slightly.</p>
-<p>So the next time a mysterious <span class="math inline">\(\lambda\)</span> appears in an optimization problem, it may help to think of it not as a mathematical trick, but as the <strong>value of a little more freedom</strong>.</p>
+<section id="the-takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="the-takeaway">The takeaway</h2>
+<p>When resources are limited, ask two questions: <strong>Have we allocated what we have well, and how valuable would a little more be?</strong> Here, equal marginal utility per dollar answers the first; <span class="math inline">\(\lambda\)</span> answers the second. Adding a variable links our choices through the resource they share. What initially looks like a mathematical trick measures the <strong>value of a little more freedom</strong>.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
