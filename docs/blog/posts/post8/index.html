@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-11-02">
+<meta name="description" content="A simulation-based guide to bootstrap intervals, 95% coverage, rejection regions, and p-values.">
 
-<title>index – Yujing Li</title>
+<title>My Eighth Blog Post – Yujing Li</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -121,17 +123,90 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">My Eighth Blog Post</h1>
+<p class="subtitle lead">Learning Statistical Inference by Repeating an Experiment</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">data science</div>
+    <div class="quarto-category">simulation</div>
+    <div class="quarto-category">statistical inference</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A simulation-based guide to bootstrap intervals, 95% coverage, rejection regions, and p-values.
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 2, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
-<hr>
-<p>title: “My Eighth Blog Post” subtitle: “Learning Statistical Inference by Repeating an Experiment” date: “2026-11-02” categories: [data science, simulation, statistical inference] image: results/01_bootstrap.png resources: - interactive.html</p>
-<hr>
+</header>
+
+
 <section id="question-and-motivation" class="level2">
 <h2 class="anchored" data-anchor-id="question-and-motivation">Question and motivation</h2>
-<p>How can one small sample tell us something about a population? A sample average changes whenever we collect new observations. Statistical inference quantifies this uncertainty. Here I simulate independent household spending from a normal population with mean $100 and standard deviation $20. These numbers are assumptions for a teaching experiment, not estimates from real households. Knowing the population truth lets us check whether our methods work. ## From one sample to a bootstrap distribution I draw 80 observations and obtain a sample mean of $98.06. To bootstrap, I draw 80 observations with replacement from this same sample, calculate their mean, and repeat 2000 times. Replacement matters: an observation can appear several times in one resample. This approximates the sampling variability of the mean using the observed data as an empirical population. The first figure displays the resulting bootstrap distribution. Its 2.5th and 97.5th percentiles give a 95% percentile interval of [$94.28, $101.81]. The interval describes uncertainty about the population mean, not the range containing 95% of individual households. A narrow distribution means greater precision; a larger sample generally makes the distribution narrower. <img src="results/01_bootstrap.png" class="img-fluid" alt="Bootstrap distribution"> ## Does 95% really mean 95%? To investigate coverage, I repeat the entire experiment 1000 times. Every repetition starts with a fresh sample from the population, constructs its own bootstrap distribution, and records whether its interval includes the fixed true mean of $100. The second figure shows the first 100 intervals; orange intervals miss the vertical truth line. Across all repetitions, coverage is 94.9%, with a Monte Carlo standard error of 0.70 percentage points. The 95% refers to the long-run success rate of the interval procedure. After a particular interval is calculated, both endpoints are fixed, as is the population mean: the interval either contains it or does not. Observed coverage need not equal exactly 95%. Finite samples, bootstrap approximation and simulation randomness all matter. Percentile intervals can under-cover, especially for small or strongly skewed samples; this experiment does not establish a universal guarantee. <img src="results/02_coverage.png" class="img-fluid" alt="Repeated interval coverage"> ## Hypothesis testing: a world where the null is true Now consider H0: mean spending equals $95, against a two-sided alternative. For this demonstration I treat the population standard deviation of $20 as known. The test statistic is Z = (sample mean - 95)/(20/sqrt(n)). If the standard deviation were unknown, the testing procedure would need to account for estimating it, for example through a t test under normality. I simulate 50000 new samples under H0 to build the reference distribution. The observed statistic is 1.370. The outer 5% of absolute simulated statistics defines a two-sided rejection region, approximately |Z| &gt; 1.956. The orange histogram tails show this rejection region. Dark lines mark the observed absolute statistic on both sides, separating outcomes at least as extreme as our observation. The Monte Carlo p-value is 0.1718; the normal-theory value is 0.1707. The simulated calculation counts both tails and uses a plus-one correction to avoid reporting zero from a finite simulation. At the 5% level, we do not reject H0. A p-value is the probability, assuming H0 and the model, of a statistic at least this extreme. It is not the probability that H0 is true and does not measure economic importance. <img src="results/03_null_test.png" class="img-fluid" alt="Null distribution and rejection regions"> ## Try it and takeaway Use the interactive lab below to vary sample size and confidence level. Its seeded normal-population experiment recomputes bootstrap distributions and repeated-sample coverage in your browser. Compare interval width and coverage across settings; small simulation counts add visible noise. The R analysis remains the reproducible source for the reported figures and tables. Bootstrap intervals quantify estimation uncertainty; null simulations calibrate tests. Both rely on a sampling model and repeated experiments. Independence and representative sampling are substantive assumptions: repeating a biased sampling process cannot repair it. ## Data and reproducibility All observations are synthetic and generated with base R using seed 640008. Run source(‘code/blogpost8_all_process.R’) from the project root. See README.md for outputs and assumptions. No external dataset or additional R package is required.</p>
+<p>How can one small sample tell us something about a population? A sample average changes whenever we collect new observations. Statistical inference quantifies this uncertainty. Here I simulate independent household spending from a normal population with mean $100 and standard deviation $20. These numbers are assumptions for a teaching experiment, not estimates from real households. Knowing the population truth lets us check whether our methods work.</p>
+</section>
+<section id="from-one-sample-to-a-bootstrap-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="from-one-sample-to-a-bootstrap-distribution">From one sample to a bootstrap distribution</h2>
+<p>I draw 80 observations and obtain a sample mean of $98.06. To bootstrap, I draw 80 observations with replacement from this same sample, calculate their mean, and repeat 2000 times. Replacement matters: an observation can appear several times in one resample. This approximates the sampling variability of the mean using the observed data as an empirical population.</p>
+<p>The first figure displays the resulting bootstrap distribution. Its 2.5th and 97.5th percentiles give a 95% percentile interval of [$94.28, $101.81]. The interval describes uncertainty about the population mean, not the range containing 95% of individual households. A narrow distribution means greater precision; a larger sample generally makes the distribution narrower.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/01_bootstrap.png" class="img-fluid figure-img"></p>
+<figcaption>Bootstrap distribution</figcaption>
+</figure>
+</div>
+</section>
+<section id="does-95-really-mean-95" class="level2">
+<h2 class="anchored" data-anchor-id="does-95-really-mean-95">Does 95% really mean 95%?</h2>
+<p>To investigate coverage, I repeat the entire experiment 1000 times. Every repetition starts with a fresh sample from the population, constructs its own bootstrap distribution, and records whether its interval includes the fixed true mean of $100. The second figure shows the first 100 intervals; orange intervals miss the vertical truth line. Across all repetitions, coverage is 94.9%, with a Monte Carlo standard error of 0.70 percentage points.</p>
+<p>The 95% refers to the long-run success rate of the interval procedure. After a particular interval is calculated, both endpoints are fixed, as is the population mean: the interval either contains it or does not. Observed coverage need not equal exactly 95%. Finite samples, bootstrap approximation and simulation randomness all matter. Percentile intervals can under-cover, especially for small or strongly skewed samples; this experiment does not establish a universal guarantee.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/02_coverage.png" class="img-fluid figure-img"></p>
+<figcaption>Repeated interval coverage</figcaption>
+</figure>
+</div>
+</section>
+<section id="hypothesis-testing-a-world-where-the-null-is-true" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-testing-a-world-where-the-null-is-true">Hypothesis testing: a world where the null is true</h2>
+<p>Now consider H0: mean spending equals $95, against a two-sided alternative. For this demonstration I treat the population standard deviation of $20 as known. The test statistic is Z = (sample mean - 95)/(20/sqrt(n)). If the standard deviation were unknown, the testing procedure would need to account for estimating it, for example through a t test under normality.</p>
+<p>I simulate 50000 new samples under H0 to build the reference distribution. The observed statistic is 1.370. The outer 5% of absolute simulated statistics defines a two-sided rejection region, approximately |Z| &gt; 1.956. The orange histogram tails show this rejection region. Dark lines mark the observed absolute statistic on both sides, separating outcomes at least as extreme as our observation.</p>
+<p>The Monte Carlo p-value is 0.1718; the normal-theory value is 0.1707. The simulated calculation counts both tails and uses a plus-one correction to avoid reporting zero from a finite simulation. At the 5% level, we do not reject H0. A p-value is the probability, assuming H0 and the model, of a statistic at least this extreme. It is not the probability that H0 is true and does not measure economic importance.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/03_null_test.png" class="img-fluid figure-img"></p>
+<figcaption>Null distribution and rejection regions</figcaption>
+</figure>
+</div>
+</section>
+<section id="try-it-and-takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="try-it-and-takeaway">Try it and takeaway</h2>
+<p>Use the interactive lab below to vary sample size and confidence level. Its seeded normal-population experiment recomputes bootstrap distributions and repeated-sample coverage in your browser. Compare interval width and coverage across settings; small simulation counts add visible noise. The R analysis remains the reproducible source for the reported figures and tables.</p>
+<p>Bootstrap intervals quantify estimation uncertainty; null simulations calibrate tests. Both rely on a sampling model and repeated experiments. Independence and representative sampling are substantive assumptions: repeating a biased sampling process cannot repair it.</p>
+</section>
+<section id="data-and-reproducibility" class="level2">
+<h2 class="anchored" data-anchor-id="data-and-reproducibility">Data and reproducibility</h2>
+<p>All observations are synthetic and generated with base R using seed 640008. Run source(‘code/blogpost8_all_process.R’) from the project root. See README.md for outputs and assumptions. No external dataset or additional R package is required.</p>
 <p><a href="https://github.com/liyujing-byte/blogpost8_statistical_inference">Complete R code, data, and replication evidence</a></p>
 <iframe src="interactive.html" title="Interactive bootstrap inference lab" style="width:100%;height:1050px;border:1px solid #dde4e9;"></iframe>
 <p><a href="interactive.html">Open the interactive lab</a></p>
